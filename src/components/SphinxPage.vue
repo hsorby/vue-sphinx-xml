@@ -4,12 +4,10 @@
 
 <script>
 import store from '@/store'
-// import { getPageStem } from '@/router/modules/sphinx'
 
 const fetchPage = name => {
   const getPageById = store.getters['sphinx/getPageById']
   const existingPageWrapper = getPageById(name)
-  // console.log('using a getter', getPageById, alt)
   const alt = store.state.sphinx.pages.find(page => page.id === name)
   console.log('existing vs. alt:', existingPageWrapper, alt)
   if (existingPageWrapper) {

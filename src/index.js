@@ -1,0 +1,73 @@
+import SphinxPage from '@/components/SphinxPage'
+import * as SphinxStore from '@/store/modules/sphinx'
+
+import BlockQuote from '@/components/templates/BlockQuote'
+import BulletList from '@/components/templates/BulletList'
+import Caption from '@/components/templates/Caption'
+import Compound from '@/components/templates/Compound'
+import Container from '@/components/templates/Container'
+import Document from '@/components/templates/Document'
+import DownloadReference from '@/components/templates/DownloadReference'
+import Emphasis from '@/components/templates/Emphasis'
+import EnumeratedList from '@/components/templates/EnumeratedList'
+import Figure from '@/components/templates/Figure'
+import Image from '@/components/templates/Image'
+import Inline from '@/components/templates/Inline'
+import ListItem from '@/components/templates/ListItem'
+import Literal from '@/components/templates/Literal'
+import LiteralBlock from '@/components/templates/LiteralBlock'
+import Math_ from '@/components/templates/Math'
+import MathBlock from '@/components/templates/MathBlock'
+import Paragraph from '@/components/templates/Paragraph'
+import Reference from '@/components/templates/Reference'
+import Reusable from '@/components/templates/Reusable'
+import Section from '@/components/templates/Section'
+import Strong from '@/components/templates/Strong'
+import Title from '@/components/templates/Title'
+import TitleReference from '@/components/templates/TitleReference'
+import Topic from '@/components/templates/Topic'
+import Transition from '@/components/templates/Transition'
+
+function install(Vue, options = {}) {
+  if (!options.store) {
+    throw 'Please provide a store!!'
+  }
+
+  // Vue.component('your-component', yourComponent)
+
+  options.store.registerModule('sphinx', SphinxStore)
+}
+
+if (
+  BlockQuote ||
+  BulletList ||
+  Caption ||
+  Compound ||
+  Container ||
+  Document ||
+  DownloadReference ||
+  Emphasis ||
+  EnumeratedList ||
+  Figure ||
+  Image ||
+  Inline ||
+  ListItem ||
+  Literal ||
+  LiteralBlock ||
+  Math_ ||
+  MathBlock ||
+  Paragraph ||
+  Reference ||
+  Reusable ||
+  Section ||
+  Strong ||
+  Title ||
+  TitleReference ||
+  Topic ||
+  Transition
+) {
+  // Are these things hidden?
+}
+
+export { SphinxPage }
+export default { install }

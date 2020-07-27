@@ -5,7 +5,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import SphinxPage from '@/components/SphinxPage.vue'
 
 export default {

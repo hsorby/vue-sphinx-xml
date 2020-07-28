@@ -17,14 +17,32 @@ npm install --save vue-sphinx-xml
 vue-sphinx-xml makes use of the vuex store to track data.  You must use a vuex store for the component to work.
 **⚠️ You need to install the module with the application like so:**
 ```javascript
-import Vue from 'vue'
-import store from './store'
 import SphinxXml from 'vue-sphinx-xml'
 
 Vue.use(SphinxXml, { store })
 ```
 
-Add the above to your `main.js` application file (this assumes that a standard layout is followed when creating your application).
+Add the above to your `main.js` application file before the line creating a `new Vue({ ... })` instance (this assumes that a standard layout is followed when creating your application).
+
+vue-sphinx-xml can make use of vue-highlightjs as an optional package.
+vue-highlightjs adds code highlighting to any code blocks in the documentation.  To make use of vue-highlightjs install the package:
+```
+npm install --save vue-highlightjs
+```
+
+and edit your `main.js` application file to have the following:
+```javascript
+import SphinxXml from 'vue-sphinx-xml'
+import VueHighlightJS from 'vue-highlightjs'
+
+import 'highlight.js/styles/xcode.css'
+
+Vue.use(SphinxXml, { store })
+Vue.use(VueHighlightJS)
+```
+
+The line `import 'highlight.js/styles/xcode.css'` is one of many styles available from highlightjs that may be imported.
+See ![highlightjs styles](https://highlightjs.org/static/demo/) for a comprehensive list of available styles.
 
 ### Module component
 

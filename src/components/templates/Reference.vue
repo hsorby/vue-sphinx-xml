@@ -8,6 +8,8 @@
 <script>
 import { mapGetters } from 'vuex'
 
+import { determineRouteUrl } from '@/js/utilities'
+
 export default {
   name: 'Reference',
   props: {
@@ -28,14 +30,18 @@ export default {
   created() {
     if (this.isInternalReference()) {
       let pageName = this.$route.params.pageName
-      const baseRefUri = this.determineBaseRefUri()
+      const baseRefUri = determineRouteUrl(this.$route)
       this.routeDescription.hash = this.element.getAttribute('refid')
       if (!this.isReferenceToCurrentPage()) {
         pageName = this.determinePageName()
         this.routeDescription.hash = this.determinePageLocation()
-        const existingPageWrapper = this.getPageById(pageName)
+        const existingPageWrapper = this.getPageById(baseRefUri, pageName)
         if (!existingPageWrapper) {
-          this.$store.dispatch('sphinx/fetchPage', pageName)
+          this.$store.dispatch('sphinx/fetchPage', {
+            page_name: pageName,
+            page_route: baseRefUri,
+            page_url: this.getBaseUrl(baseRefUri),
+          })
         }
       }
       this.routeDescription.path = baseRefUri + '/' + pageName
@@ -47,17 +53,8 @@ export default {
       const hash = elementRefUri.split('#')[1]
       return hash ? '#' + hash : ''
     },
-    determineBaseRefUri() {
-      const regex = this.$route.matched[0].regex
-      const matched = this.$route.fullPath.match(regex)
-      let base = matched[0]
-      if (matched[1]) {
-        base = matched[0].replace(`/${matched[1]}`, '')
-      }
-      return base
-    },
     determinePageName() {
-      const baseRefUri = this.determineBaseRefUri()
+      const baseRefUri = determineRouteUrl(this.$route)
       const elementRefUri = this.element.getAttribute('refuri')
 
       // Remove page from reference uri
@@ -93,6 +90,7 @@ export default {
   computed: {
     ...mapGetters({
       getPageById: 'sphinx/getPageById',
+      getBaseUrl: 'sphinx/getBaseUrl',
     }),
   },
 }

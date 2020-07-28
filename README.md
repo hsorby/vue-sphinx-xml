@@ -49,6 +49,17 @@ export default {
 </script>
 ```
 
+#### Component API
+
+ - props
+
+|key|description|default|options|
+|:---|---|---|---|
+| `baseURL`|the base URL of the XML files|`'/'`|`String`|
+|`indexFileName`|the name of the index file at the base URL|`'index'`|`String`
+|`downloadLocation`|the URL for the downloads|`'downloads'`|`String`|
+|`scrollDelay`|delay before scrolling to hash location on page|`300`|`Number`|
+
 ### Module routing
 
 vue-sphinx-xml requires that you use vue-router.  To add a vue-sphinx-xml route under `documentation` add the following to `routes` object for vue-router:

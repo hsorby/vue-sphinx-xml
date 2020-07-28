@@ -1,6 +1,9 @@
 <template>
   <div class="tutorial">
-    <sphinx-page indexFileName="tutorials_index"></sphinx-page>
+    <sphinx-page
+      baseURL="/v0.1.0"
+      indexFileName="tutorials_index"
+    ></sphinx-page>
   </div>
 </template>
 

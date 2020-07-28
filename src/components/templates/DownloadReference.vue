@@ -2,6 +2,7 @@
 import { mapGetters } from 'vuex'
 
 import { sphinxChildren } from '@/mixins/SphinxChildren'
+import { determineRouteUrl } from '@/js/utilities'
 
 export default {
   name: 'DownloadReference',
@@ -36,7 +37,8 @@ export default {
         !downloadHref.startsWith('/') &&
         !downloadHref.startsWith('http')
       ) {
-        downloadHref = `${this.getDownloadLocation()}/${downloadHref}`
+        const routeURL = determineRouteUrl(this.$route)
+        downloadHref = `${this.getDownloadLocation(routeURL)}/${downloadHref}`
       }
       return downloadHref
     },

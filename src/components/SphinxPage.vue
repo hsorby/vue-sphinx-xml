@@ -5,19 +5,7 @@
 <script>
 import store from '@/store'
 
-const fetchPage = name => {
-  const getPageById = store.getters['sphinx/getPageById']
-  const existingPageWrapper = getPageById(name)
-  // const alt = store.state.sphinx.pages.find(page => page.id === name)
-  // console.log('existing vs. alt:', existingPageWrapper, alt)
-  if (existingPageWrapper) {
-    return new Promise(resolve => {
-      resolve(existingPageWrapper.page)
-    })
-  } else {
-    return store.dispatch('sphinx/fetchPage', name)
-  }
-}
+import { determineRouteUrl } from '@/js/utilities'
 
 export default {
   name: 'SphinxPage',
@@ -25,6 +13,10 @@ export default {
     document: () => import('@/components/templates/Document'),
   },
   props: {
+    baseURL: {
+      type: String,
+      default: '/',
+    },
     indexFileName: {
       type: String,
       default: 'index',
@@ -76,10 +68,18 @@ export default {
       if (!pageName) {
         pageName = this.indexFileName
       }
-      fetchPage(pageName).then(element => {
-        this.element = element
-        this.id = pageName.replace('/', '_')
-      })
+      const routeURL = determineRouteUrl(routeTo)
+      store
+        .dispatch('sphinx/fetchPage', {
+          page_name: pageName,
+          page_route: routeURL,
+          page_url: this.baseURL,
+          page_download: this.downloadLocation,
+        })
+        .then(element => {
+          this.element = element
+          this.id = pageName.replace('/', '_')
+        })
     },
   },
 }

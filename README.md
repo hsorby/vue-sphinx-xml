@@ -51,9 +51,9 @@ export default {
 
 #### Component API
 
- - props
+ - props API
 
-|key|description|default|options|
+|prop|description|default|type|
 |:---|---|---|---|
 | `baseURL`|the base URL of the XML files|`'/'`|`String`|
 |`indexFileName`|the name of the index file at the base URL|`'index'`|`String`

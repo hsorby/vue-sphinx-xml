@@ -86,14 +86,12 @@ export const sphinxChildren = {
           isTopic = true
         } else {
           while (parent && parent.$options.name !== 'SphinxPage') {
-            // names.push(parent.element, parent.$el)
             if (parent.$options.name === 'Section') {
               depth += 1
             }
             parent = parent.$parent
           }
         }
-        // console.log(names)
         childComponent = renderTitle(node, depth, isTopic)
       } else if (node.nodeName === 'section') {
         childComponent = renderSection(node, target)
@@ -132,7 +130,7 @@ export const sphinxChildren = {
           childComponent = renderPlainText(node.nodeValue)
         }
       } else {
-        console.log('Element type not handled: ', node.nodeName)
+        throw `Element type not handled: '${node.nodeName}'`
       }
       return childComponent
     },

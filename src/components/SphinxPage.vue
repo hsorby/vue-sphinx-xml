@@ -8,8 +8,8 @@ import store from '@/store'
 const fetchPage = name => {
   const getPageById = store.getters['sphinx/getPageById']
   const existingPageWrapper = getPageById(name)
-  const alt = store.state.sphinx.pages.find(page => page.id === name)
-  console.log('existing vs. alt:', existingPageWrapper, alt)
+  // const alt = store.state.sphinx.pages.find(page => page.id === name)
+  // console.log('existing vs. alt:', existingPageWrapper, alt)
   if (existingPageWrapper) {
     return new Promise(resolve => {
       resolve(existingPageWrapper.page)

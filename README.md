@@ -1,9 +1,9 @@
-![logo](https://github.com/hsorby/vue-sphinx-xml/raw/master/docs/assetts/vue-sphinx-xml-logo.svg)
+![logo](https://github.com/hsorby/vue-sphinx-xml/raw/master/docs/assets/vue-sphinx-xml-logo.svg)
 # vue-sphinx-xml
 
-[![npm](https://img.shields.io/npm/v/vue-sphinx-xml.svg) ![npm](https://img.shields.io/npm/dm/vue-sphinx-xml.svg)](https://www.npmjs.com/package/vue-sphinx-
-xml)
+[![npm](https://img.shields.io/npm/v/vue-sphinx-xml.svg) ![npm](https://img.shields.io/npm/dm/vue-sphinx-xml.svg)](https://www.npmjs.com/package/vue-sphinx-xml)
 [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
+
 
 Vue component for displaying Sphinx documentation XML content.
 

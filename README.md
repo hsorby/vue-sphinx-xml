@@ -33,18 +33,18 @@ Example view `Documentation.vue`:
 ```javascript
 <template>
   <div class="documentation">
-    <sphinx-xml baseURL="/sphinx-xml-files" />
+    <sphinx-page baseURL="/sphinx-xml-files" />
   </div>
 </template>
 
 <script>
-import { SphinxXml } from 'vue-sphinx-xml'
+import { SphinxPage } from 'vue-sphinx-xml'
 
 export default {
   name: 'Documentation',
   components: {
-    SphinxXml
-  }
+    SphinxPage,
+  },
 }
 </script>
 ```

@@ -1,12 +1,14 @@
-// module.exports = {
-//   css: {
-//     loaderOptions: {
-//       sass: {
-//         data: `
-//           @import "node_modules/hig/_variables.scss";
-//           @import "@/scss/_mixins.scss";
-//         `,
-//       },
-//     },
-//   },
-// }
+function getProdExternals() {
+  return {
+    axios: 'axios',
+  }
+}
+
+module.exports = {
+  devServer: {
+    host: 'localhost',
+  },
+  configureWebpack: {
+    externals: process.env.NODE_ENV === 'production' ? getProdExternals() : {},
+  },
+}

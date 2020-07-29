@@ -6,7 +6,8 @@ export const state = {
   pages: new Map(),
   urlMap: new Map(),
   inflight: new Map(),
-  downloadLocations: new Map(),
+  downloadURLs: new Map(),
+  imagesURLs: new Map(),
 }
 
 export const mutations = {
@@ -29,15 +30,26 @@ export const mutations = {
   REMOVE_INFLIGHT(state, { routeURL, id }) {
     state.inflight.get(routeURL).delete(id)
   },
-  SET_DOWNLOAD_LOCATION(state, { routeURL, location }) {
-    state.downloadLocations.set(routeURL, location)
-  },
-  REGISTER_BASE_URL(state, { baseURL, routeURL, downloadURL }) {
+  // SET_DOWNLOADS_URL(state, { routeURL, url }) {
+  //   state.downloadsURLs.set(routeURL, url)
+  // },
+  // SET_IMAGES_URL(state, { routeURL, url }) {
+  //   state.imagesURLs.set(routeURL, url)
+  // },
+  REGISTER_ROUTE_URL(state, { baseURL, routeURL, downloadsURL, imagesURL }) {
     const registeredURL = state.pages.get(routeURL)
     if (!registeredURL) {
+      console.log(
+        'registering page:',
+        routeURL,
+        baseURL,
+        downloadsURL,
+        imagesURL,
+      )
       state.pages.set(routeURL, [])
       state.urlMap.set(routeURL, baseURL)
-      state.downloadLocations.set(routeURL, downloadURL)
+      state.downloadURLs.set(routeURL, downloadsURL)
+      state.imagesURLs.set(routeURL, imagesURL)
       state.inflight.set(routeURL, new Map())
     }
   },
@@ -48,11 +60,11 @@ export const actions = {
     const page_name = payload.page_name
     const page_route = payload.page_route
     const base_url = payload.page_url
-    const page_download = payload.page_download
-    commit('REGISTER_BASE_URL', {
+    commit('REGISTER_ROUTE_URL', {
       baseURL: base_url,
       routeURL: page_route,
-      downloadURL: page_download,
+      downloadsURL: payload.page_downloads,
+      imagesURL: payload.page_images,
     })
     const existingPage = getters.getPageById(page_route, page_name)
     if (existingPage) {
@@ -76,9 +88,12 @@ export const actions = {
     commit('ADD_INFLIGHT', { routeURL: page_route, page_name, pending })
     return pending
   },
-  setDownloadLocation({ commit }, { page_route, location }) {
-    commit('SET_DOWNLOAD_LOCATION', { routeURL: page_route, location })
-  },
+  // setDownloadURL({ commit }, { page_route, url }) {
+  //   commit('SET_DOWNLOAD_URL', { routeURL: page_route, url })
+  // },
+  // setImagesURL({ commit }, { page_route, url }) {
+  //   commit('SET_IMAGES_URL', { routeURL: page_route, url })
+  // },
 }
 
 export const getters = {
@@ -94,7 +109,10 @@ export const getters = {
   getBaseUrl: state => routeURL => {
     return state.urlMap.get(routeURL)
   },
-  getDownloadLocation: state => routeURL => {
-    return state.downloadLocations.get(routeURL)
+  getDownloadURL: state => routeURL => {
+    return state.downloadURLs.get(routeURL)
+  },
+  getImagesURL: state => routeURL => {
+    return state.imagesURLs.get(routeURL)
   },
 }

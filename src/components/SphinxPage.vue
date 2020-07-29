@@ -17,13 +17,17 @@ export default {
       type: String,
       default: '/',
     },
+    downloadBaseURL: {
+      type: String,
+      default: '',
+    },
+    imagesBaseURL: {
+      type: String,
+      default: '',
+    },
     indexFileName: {
       type: String,
       default: 'index',
-    },
-    downloadLocation: {
-      type: String,
-      default: '/downloads',
     },
     scrollDelay: {
       type: Number,
@@ -68,13 +72,22 @@ export default {
       if (!pageName) {
         pageName = this.indexFileName
       }
+      const imagesBaseURL =
+        this.imagesBaseURL === ''
+          ? `${this.baseURL}/_images`
+          : this.imagesBaseURL
+      const downloadBaseURL =
+        this.downloadBaseURL === ''
+          ? `${this.baseURL}/_downloads`
+          : this.downloadBaseURL
       const routeURL = determineRouteUrl(routeTo)
       store
         .dispatch('sphinx/fetchPage', {
           page_name: pageName,
           page_route: routeURL,
           page_url: this.baseURL,
-          page_download: this.downloadLocation,
+          page_downloads: downloadBaseURL,
+          page_images: imagesBaseURL,
         })
         .then(element => {
           this.element = element

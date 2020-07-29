@@ -74,8 +74,9 @@ export default {
 |prop|description|default|type|
 |:---|---|---|---|
 | `baseURL`|the base URL of the XML files|`'/'`|`String`|
+|`downloadBaseURL`|the base URL for downloads|`baseURL + '/_downloads'`|`String`|
+|`imagesBaseURL`|the base URL for images|`baseURL + '/_images'`|`String`|
 |`indexFileName`|the name of the index file at the base URL|`'index'`|`String`
-|`downloadLocation`|the URL for the downloads|`'downloads'`|`String`|
 |`scrollDelay`|delay before scrolling to hash location on page|`300`|`Number`|
 
 ### Module routing

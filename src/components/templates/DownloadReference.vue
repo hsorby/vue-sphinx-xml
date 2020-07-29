@@ -38,7 +38,7 @@ export default {
         !downloadHref.startsWith('http')
       ) {
         const routeURL = determineRouteUrl(this.$route)
-        downloadHref = `${this.getDownloadLocation(routeURL)}/${downloadHref}`
+        downloadHref = `${this.getDownloadURL(routeURL)}/${downloadHref}`
       }
       return downloadHref
     },
@@ -51,7 +51,7 @@ export default {
       }
     },
     ...mapGetters({
-      getDownloadLocation: 'sphinx/getDownloadLocation',
+      getDownloadURL: 'sphinx/getDownloadURL',
     }),
   },
 }

@@ -49,18 +49,22 @@ export default {
           if (to.hash) {
             setTimeout(() => {
               const elem = document.querySelector(to.hash)
-              window.scrollTo({
-                top: elem.offsetTop,
-                behavior: 'smooth',
-              })
+              if (elem) {
+                window.scrollTo({
+                  top: elem.offsetTop,
+                  behavior: 'smooth',
+                })
+              }
             }, this.scrollDelay)
           }
         } else if (to.path === from.path && to.hash) {
           const elem = document.querySelector(to.hash)
-          window.scrollTo({
-            top: elem.offsetTop,
-            behavior: 'smooth',
-          })
+          if (elem) {
+            window.scrollTo({
+              top: elem.offsetTop,
+              behavior: 'smooth',
+            })
+          }
         }
       },
       immediate: true,

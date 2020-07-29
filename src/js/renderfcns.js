@@ -220,6 +220,21 @@ export const renderParagraph = element => {
   }
 }
 
+export const renderProblematic = element => {
+  return {
+    components: {
+      Problematic: () => import('@/components/templates/Problematic'),
+    },
+    render(h) {
+      return h('Problematic', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
 export const renderReference = element => {
   return {
     components: {

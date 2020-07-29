@@ -4,6 +4,7 @@ import {
   renderTitle,
   renderSection,
   renderParagraph,
+  renderProblematic,
   renderReference,
   renderLiteralBlock,
   renderTopic,
@@ -125,6 +126,8 @@ export const sphinxChildren = {
         childComponent = renderEmphasis(node)
       } else if (node.nodeName === 'transition') {
         childComponent = renderTransition()
+      } else if (node.nodeName === 'problematic') {
+        childComponent = renderProblematic(node)
       } else if (node.nodeName === '#text') {
         if (node.nodeValue.trim()) {
           childComponent = renderPlainText(node.nodeValue)

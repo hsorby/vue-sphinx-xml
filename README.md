@@ -67,17 +67,17 @@ export default {
 </script>
 ```
 
-#### Component API
+#### SphinxPage API
 
- - props API
+ - props
 
-|prop|description|default|type|
-|:---|---|---|---|
-| `baseURL`|the base URL of the XML files|`'/'`|`String`|
-|`downloadBaseURL`|the base URL for downloads|`baseURL + '/_downloads'`|`String`|
-|`imagesBaseURL`|the base URL for images|`baseURL + '/_images'`|`String`|
-|`indexFileName`|the name of the index file at the base URL|`'index'`|`String`
-|`scrollDelay`|delay before scrolling to hash location on page|`300`|`Number`|
+ |prop|description|default|type|
+ |:---|---|---|---|
+ | `baseURL`|the base URL of the XML files|`'/'`|`String`|
+ |`downloadBaseURL`|the base URL for downloads|`baseURL + '/_downloads'`|`String`|
+ |`imagesBaseURL`|the base URL for images|`baseURL + '/_images'`|`String`|
+ |`indexFileName`|the name of the index file at the base URL|`'index'`|`String`
+ |`scrollDelay`|delay before scrolling to hash location on page|`300`|`Number`|
 
 ### Module routing
 
@@ -94,6 +94,18 @@ vue-sphinx-xml requires that you use vue-router.  To add a vue-sphinx-xml route 
 ```
 
 Again assuming standard layout.
+
+### Module math
+
+To render any math in the page vue-sphinx-xml uses MathJax.
+To render math with MathJax add the following to the `head` section of the `public/index.html` file:
+```html
+<script
+  type="text/javascript"
+  async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
+></script>
+```
 
 ## Examples
 

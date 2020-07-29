@@ -19,6 +19,7 @@ import LiteralBlock from '@/components/templates/LiteralBlock'
 import Math_ from '@/components/templates/Math'
 import MathBlock from '@/components/templates/MathBlock'
 import Paragraph from '@/components/templates/Paragraph'
+import Problematic from '@/components/templates/Problematic'
 import Reference from '@/components/templates/Reference'
 import Reusable from '@/components/templates/Reusable'
 import Section from '@/components/templates/Section'
@@ -57,6 +58,7 @@ if (
   Math_ ||
   MathBlock ||
   Paragraph ||
+  Problematic ||
   Reference ||
   Reusable ||
   Section ||

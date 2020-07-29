@@ -6,7 +6,7 @@
 import { VueMathjax } from 'vue-mathjax'
 
 export default {
-  name: 'MathBlock',
+  name: 'Math',
   components: {
     'vue-mathjax': VueMathjax,
   },

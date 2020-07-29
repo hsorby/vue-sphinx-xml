@@ -39,13 +39,6 @@ export const mutations = {
   REGISTER_ROUTE_URL(state, { baseURL, routeURL, downloadsURL, imagesURL }) {
     const registeredURL = state.pages.get(routeURL)
     if (!registeredURL) {
-      console.log(
-        'registering page:',
-        routeURL,
-        baseURL,
-        downloadsURL,
-        imagesURL,
-      )
       state.pages.set(routeURL, [])
       state.urlMap.set(routeURL, baseURL)
       state.downloadURLs.set(routeURL, downloadsURL)

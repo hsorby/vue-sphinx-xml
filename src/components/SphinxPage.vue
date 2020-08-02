@@ -94,8 +94,18 @@ export default {
           page_images: imagesBaseURL,
         })
         .then(element => {
-          this.element = element
-          this.id = pageName.replace('/', '_')
+          if (element) {
+            this.element = element
+            this.id = pageName.replace('/', '_')
+          } else {
+            this.$router.push({
+              name: '404',
+              params: {
+                type: 'page',
+                message: `Could not find Sphinx page '${pageName}.xml'.`,
+              },
+            })
+          }
         })
     },
   },

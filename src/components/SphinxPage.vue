@@ -97,7 +97,7 @@ export default {
           if (element) {
             this.element = element
             this.id = pageName.replace('/', '_')
-            this.$emit('page-updated')
+            this.$emit('updated')
           } else {
             this.$router.push({
               name: '404',

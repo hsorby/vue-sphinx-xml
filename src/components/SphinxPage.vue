@@ -70,6 +70,9 @@ export default {
       immediate: true,
     },
   },
+  updated() {
+    this.$emit('updated')
+  },
   methods: {
     fetchPageData(routeTo) {
       let pageName = routeTo.params.pageName
@@ -97,7 +100,6 @@ export default {
           if (element) {
             this.element = element
             this.id = pageName.replace('/', '_')
-            this.$emit('updated')
           } else {
             this.$router.push({
               name: '404',

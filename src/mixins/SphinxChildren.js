@@ -25,6 +25,7 @@ import {
   renderFigure,
   renderCaption,
   renderImage,
+  renderTodoNode,
 } from '@/js/renderfcns'
 
 export const sphinxChildren = {
@@ -128,11 +129,14 @@ export const sphinxChildren = {
         childComponent = renderTransition()
       } else if (node.nodeName === 'problematic') {
         childComponent = renderProblematic(node)
+      } else if (node.nodeName === 'todo_node') {
+        childComponent = renderTodoNode(node)
       } else if (node.nodeName === '#text') {
         if (node.nodeValue.trim()) {
           childComponent = renderPlainText(node.nodeValue)
         }
       } else {
+        console.log('node unknown:', node)
         throw `Element type not handled: '${node.nodeName}'`
       }
       return childComponent

@@ -235,6 +235,21 @@ export const renderProblematic = element => {
   }
 }
 
+export const renderTodoNode = element => {
+  return {
+    components: {
+      TodoNode: () => import('@/components/templates/TodoNode'),
+    },
+    render(h) {
+      return h('TodoNode', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
 export const renderReference = element => {
   return {
     components: {

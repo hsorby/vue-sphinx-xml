@@ -401,3 +401,18 @@ export const renderBlockQuote = element => {
     },
   }
 }
+
+export const renderComment = element => {
+  return {
+    components: {
+      Comment: () => import('@/components/templates/Comment'),
+    },
+    render(h) {
+      return h('Comment', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}

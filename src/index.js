@@ -4,6 +4,7 @@ import * as SphinxStore from '@/store/modules/sphinx'
 import BlockQuote from '@/components/templates/BlockQuote'
 import BulletList from '@/components/templates/BulletList'
 import Caption from '@/components/templates/Caption'
+import Comment from '@/components/templates/Comment'
 import Compound from '@/components/templates/Compound'
 import Container from '@/components/templates/Container'
 import Document from '@/components/templates/Document'
@@ -43,6 +44,7 @@ if (
   BlockQuote ||
   BulletList ||
   Caption ||
+  Comment ||
   Compound ||
   Container ||
   Document ||

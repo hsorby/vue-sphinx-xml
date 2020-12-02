@@ -26,6 +26,7 @@ import {
   renderCaption,
   renderImage,
   renderTodoNode,
+  renderComment,
 } from '@/js/renderfcns'
 
 export const sphinxChildren = {
@@ -131,6 +132,8 @@ export const sphinxChildren = {
         childComponent = renderProblematic(node)
       } else if (node.nodeName === 'todo_node') {
         childComponent = renderTodoNode(node)
+      } else if (node.nodeName === 'comment') {
+        childComponent = renderComment(node)
       } else if (node.nodeName === '#text') {
         if (node.nodeValue.trim()) {
           childComponent = renderPlainText(node.nodeValue)

@@ -7,6 +7,9 @@ export const baseDiv = {
 
   computed: {
     classes() {
+      if (!this.element.hasAttribute('classes')) {
+        return []
+      }
       return [
         this.$options.name.toLowerCase(),
         ...this.element.getAttribute('classes').split(' '),

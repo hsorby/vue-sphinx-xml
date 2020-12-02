@@ -8,7 +8,10 @@ export const baseDiv = {
   computed: {
     classes() {
       if (!this.element.hasAttribute('classes')) {
-        return []
+        return [
+          this.$options.name.toLowerCase(),
+          []
+        ]
       }
       return [
         this.$options.name.toLowerCase(),

@@ -1,5 +1,5 @@
 <script>
-import { sphinxChildren } from '@/mixins/SphinxChildren'
+import { sphinxChildren } from '../../mixins/SphinxChildren'
 
 export default {
   name: 'BlockQuote',

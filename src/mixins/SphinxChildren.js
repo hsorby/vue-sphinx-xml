@@ -27,7 +27,7 @@ import {
   renderImage,
   renderTodoNode,
   renderComment,
-} from '@/js/renderfcns'
+} from '../js/renderfcns'
 
 export const sphinxChildren = {
   computed: {

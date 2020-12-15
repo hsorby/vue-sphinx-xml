@@ -1,4 +1,4 @@
-import SphinxService from '@/services/SphinxService'
+import SphinxService from '../../services/SphinxService'
 
 export const namespaced = true
 

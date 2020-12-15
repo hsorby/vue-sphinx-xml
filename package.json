@@ -13,7 +13,7 @@
     "documentation",
     "xml"
   ],
-  "main": "dist/vue-sphinx-xml.common.js",
+  "main": "src/index.js",
   "files": [
     "src",
     "dist/*.js"

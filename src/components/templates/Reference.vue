@@ -8,7 +8,7 @@
 <script>
 import { mapGetters } from 'vuex'
 
-import { determineRouteUrl } from '@/js/utilities'
+import { determineRouteUrl } from '../../js/utilities'
 
 export default {
   name: 'Reference',

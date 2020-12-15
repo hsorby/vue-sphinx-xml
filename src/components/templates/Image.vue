@@ -1,8 +1,8 @@
 <script>
 import { mapGetters } from 'vuex'
 
-import { sphinxChildren } from '@/mixins/SphinxChildren'
-import { determineRouteUrl } from '@/js/utilities'
+import { sphinxChildren } from '../../mixins/SphinxChildren'
+import { determineRouteUrl } from '../../js/utilities'
 
 export default {
   name: 'SphinxImage',

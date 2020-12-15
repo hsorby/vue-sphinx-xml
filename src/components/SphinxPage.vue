@@ -3,14 +3,14 @@
 </template>
 
 <script>
-import store from '@/store'
+import store from '../store'
 
-import { determineRouteUrl } from '@/js/utilities'
+import { determineRouteUrl } from '../js/utilities'
 
 export default {
   name: 'SphinxPage',
   components: {
-    document: () => import('@/components/templates/Document'),
+    document: () => import('./templates/Document'),
   },
   props: {
     baseURL: {

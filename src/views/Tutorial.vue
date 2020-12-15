@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import SphinxPage from '@/components/SphinxPage.vue'
+import SphinxPage from '../components/SphinxPage.vue'
 
 export default {
   name: 'Tutorial',

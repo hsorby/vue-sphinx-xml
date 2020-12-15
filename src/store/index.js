@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import * as sphinx from '@/store/modules/sphinx.js'
+import * as sphinx from './modules/sphinx.js'
 
 Vue.use(Vuex)
 

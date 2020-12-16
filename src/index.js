@@ -25,6 +25,10 @@ import Reference from './components/templates/Reference'
 import Reusable from './components/templates/Reusable'
 import Section from './components/templates/Section'
 import Strong from './components/templates/Strong'
+import Table from './components/templates/Table'
+import TableBody from './components/templates/TableBody'
+import TableEntry from './components/templates/TableEntry'
+import TableRow from './components/templates/TableRow'
 import Title from './components/templates/Title'
 import TitleReference from './components/templates/TitleReference'
 import Topic from './components/templates/Topic'
@@ -65,6 +69,10 @@ if (
   Reusable ||
   Section ||
   Strong ||
+  Table ||
+  TableBody ||
+  TableEntry ||
+  TableRow ||
   Title ||
   TitleReference ||
   Topic ||

@@ -27,6 +27,10 @@ import {
   renderImage,
   renderTodoNode,
   renderComment,
+  renderTable,
+  renderTableRow,
+  renderTableBody,
+  renderTableEntry,
 } from '../js/renderfcns'
 
 export const sphinxChildren = {
@@ -35,7 +39,7 @@ export const sphinxChildren = {
       let childComponents = []
       let target = null
       this.element.childNodes.forEach(node => {
-        if (node.nodeName === 'compact_paragraph') {
+        if ((node.nodeName === 'compact_paragraph') || (node.nodeName === 'tgroup')) {
           // Skip over this wrapper and directly add its children to this element.
           let childTarget = null
           node.childNodes.forEach(childNode => {
@@ -65,6 +69,9 @@ export const sphinxChildren = {
   },
 
   methods: {
+    findValidChildren() {
+      return
+    },
     renderDispatcher(node, target) {
       let childComponent = null
       if (node.nodeName === 'list_item') {
@@ -134,11 +141,23 @@ export const sphinxChildren = {
         childComponent = renderTodoNode(node)
       } else if (node.nodeName === 'comment') {
         childComponent = renderComment(node)
-      } else if (node.nodeName === '#text') {
+      } else if (node.nodeName === 'table') {
+        childComponent = renderTable(node)
+      } else if (node.nodeName === 'tbody') {
+        childComponent = renderTableBody(node)
+      } else if (node.nodeName === 'row') {
+        childComponent = renderTableRow(node)
+      } else if (node.nodeName === 'entry') {
+        childComponent = renderTableEntry(node)
+      } else if (node.nodeName === 'colspec') {
+        // Do nothing: ignore this type and all its children.
+      }
+      else if (node.nodeName === '#text') {
         if (node.nodeValue.trim()) {
           childComponent = renderPlainText(node.nodeValue)
         }
-      } else {
+      }
+      else {
         console.log('node unknown:', node)
         throw `Element type not handled: '${node.nodeName}'`
       }

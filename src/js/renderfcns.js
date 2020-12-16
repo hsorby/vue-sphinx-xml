@@ -416,3 +416,63 @@ export const renderComment = element => {
     },
   }
 }
+
+export const renderTable = element => {
+  return {
+    components: {
+      Table: () => import('../components/templates/Table'),
+    },
+    render(h) {
+      return h('Table', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}
+
+export const renderTableBody = element => {
+  return {
+    components: {
+      TableBody: () => import('../components/templates/TableBody'),
+    },
+    render(h) {
+      return h('TableBody', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}
+
+export const renderTableRow = element => {
+  return {
+    components: {
+      TableRow: () => import('../components/templates/TableRow'),
+    },
+    render(h) {
+      return h('TableRow', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}
+
+export const renderTableEntry = element => {
+  return {
+    components: {
+      TableEntry: () => import('../components/templates/TableEntry'),
+    },
+    render(h) {
+      return h('TableEntry', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}

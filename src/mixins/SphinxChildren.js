@@ -69,9 +69,6 @@ export const sphinxChildren = {
   },
 
   methods: {
-    findValidChildren() {
-      return
-    },
     renderDispatcher(node, target) {
       let childComponent = null
       if (node.nodeName === 'list_item') {

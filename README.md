@@ -1,21 +1,23 @@
-![logo](https://github.com/hsorby/vue-sphinx-xml/raw/master/docs/assets/vue-sphinx-xml-logo.svg)
+![logo](https://github.com/hsorby/vue-sphinx-xml/raw/main/docs/assets/vue-sphinx-xml-logo.svg)
+
 # vue-sphinx-xml
 
 [![npm](https://img.shields.io/npm/v/vue-sphinx-xml.svg) ![npm](https://img.shields.io/npm/dm/vue-sphinx-xml.svg)](https://www.npmjs.com/package/vue-sphinx-xml)
 [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
 
-
 Vue component for displaying Sphinx documentation XML content.
 
 ## Project setup
+
 ```
 npm install --save vue-sphinx-xml
 ```
 
 ### Module import
 
-vue-sphinx-xml makes use of the vuex store to track data.  You must use a vuex store for the component to work.
+vue-sphinx-xml makes use of the vuex store to track data. You must use a vuex store for the component to work.
 **⚠️ You need to install the module with the application like so:**
+
 ```javascript
 import SphinxXml from 'vue-sphinx-xml'
 
@@ -25,12 +27,14 @@ Vue.use(SphinxXml, { store })
 Add the above to your `main.js` application file before the line creating a `new Vue({ ... })` instance (this assumes that a standard layout is followed when creating your application).
 
 vue-sphinx-xml can make use of vue-highlightjs as an optional package.
-vue-highlightjs adds code highlighting to any code blocks in the documentation.  To make use of vue-highlightjs install the package:
+vue-highlightjs adds code highlighting to any code blocks in the documentation. To make use of vue-highlightjs install the package:
+
 ```
 npm install --save vue-highlightjs
 ```
 
 and edit your `main.js` application file to have the following:
+
 ```javascript
 import SphinxXml from 'vue-sphinx-xml'
 import VueHighlightJS from 'vue-highlightjs'
@@ -48,6 +52,7 @@ See ![highlightjs styles](https://highlightjs.org/static/demo/) for a comprehens
 
 To use the vue-sphinx-xml component import it in a view and set the `baseURL` for the source XML.
 Example view `Documentation.vue`:
+
 ```javascript
 <template>
   <div class="documentation">
@@ -69,19 +74,20 @@ export default {
 
 #### SphinxPage API
 
- - props
+- props
 
- |prop|description|default|type|
- |:---|---|---|---|
- | `baseURL`|the base URL of the XML files|`'/'`|`String`|
- |`downloadBaseURL`|the base URL for downloads|`baseURL + '/_downloads'`|`String`|
- |`imagesBaseURL`|the base URL for images|`baseURL + '/_images'`|`String`|
- |`indexFileName`|the name of the index file at the base URL|`'index'`|`String`
- |`scrollDelay`|delay before scrolling to hash location on page|`300`|`Number`|
+| prop              | description                                     | default                   | type     |
+| :---------------- | ----------------------------------------------- | ------------------------- | -------- |
+| `baseURL`         | the base URL of the XML files                   | `'/'`                     | `String` |
+| `downloadBaseURL` | the base URL for downloads                      | `baseURL + '/_downloads'` | `String` |
+| `imagesBaseURL`   | the base URL for images                         | `baseURL + '/_images'`    | `String` |
+| `indexFileName`   | the name of the index file at the base URL      | `'index'`                 | `String` |
+| `scrollDelay`     | delay before scrolling to hash location on page | `300`                     | `Number` |
 
 ### Module routing
 
-vue-sphinx-xml requires that you use vue-router.  To add a vue-sphinx-xml route under `documentation` add the following to `routes` object for vue-router:
+vue-sphinx-xml requires that you use vue-router. To add a vue-sphinx-xml route under `documentation` add the following to `routes` object for vue-router:
+
 ```javascript
   {
     path: '/documentation/:pageName*',
@@ -99,6 +105,7 @@ Again assuming standard layout.
 
 To render any math in the page vue-sphinx-xml uses MathJax.
 To render math with MathJax add the following to the `head` section of the `public/index.html` file:
+
 ```html
 <script
   type="text/javascript"
@@ -110,7 +117,7 @@ To render math with MathJax add the following to the `head` section of the `publ
 ## Examples
 
 For a complete example of a Vue application using vue-sphinx-xml look at https://github.com/hsorby/example-vue-sphinx-xml.
-The master branch has a basic example of how vue-sphinx-xml may be used and the `multi_version` branch has an example of how vue-sphinx-xml may be used for different versions of Sphinx XML output.
+The **main** branch has a basic example of how vue-sphinx-xml may be used and the **multi_version** branch has an example of how vue-sphinx-xml may be used for different versions of Sphinx XML output.
 
 ---
 
@@ -121,29 +128,35 @@ The master branch has a basic example of how vue-sphinx-xml may be used and the 
 ---
 
 ## Project setup
+
 ```
 npm install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 npm run serve
 ```
 
 ### Compiles and minifies for production
+
 ```
 npm run build
 ```
 
 ### Run your unit tests
+
 ```
 npm run test:unit
 ```
 
 ### Lints and fixes files
+
 ```
 npm run lint
 ```
 
 ### Customize configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).

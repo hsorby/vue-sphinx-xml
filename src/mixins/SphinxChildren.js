@@ -26,11 +26,13 @@ import {
   renderCaption,
   renderImage,
   renderTodoNode,
-  renderComment,
+  // renderComment,
   renderTable,
   renderTableRow,
   renderTableBody,
   renderTableEntry,
+  renderLineSingle,
+  renderLineBlock, 
 } from '../js/renderfcns'
 
 export const sphinxChildren = {
@@ -137,7 +139,8 @@ export const sphinxChildren = {
       } else if (node.nodeName === 'todo_node') {
         childComponent = renderTodoNode(node)
       } else if (node.nodeName === 'comment') {
-        childComponent = renderComment(node)
+        // Do nothing: ignore this type and its children.
+        // childComponent = renderComment(node)
       } else if (node.nodeName === 'table') {
         childComponent = renderTable(node)
       } else if (node.nodeName === 'tbody') {
@@ -146,6 +149,10 @@ export const sphinxChildren = {
         childComponent = renderTableRow(node)
       } else if (node.nodeName === 'entry') {
         childComponent = renderTableEntry(node)
+      } else if (node.nodeName === 'line') {
+        childComponent = renderLineSingle(node)
+      } else if (node.nodeName === 'line_block') {
+        childComponent = renderLineBlock(node)
       } else if (node.nodeName === 'colspec') {
         // Do nothing: ignore this type and all its children.
       }

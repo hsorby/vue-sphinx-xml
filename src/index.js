@@ -14,6 +14,8 @@ import EnumeratedList from './components/templates/EnumeratedList'
 import Figure from './components/templates/Figure'
 import Image from './components/templates/Image'
 import Inline from './components/templates/Inline'
+import LineSingle from './components/templates/LineSingle'
+import LineBlock from './components/templates/LineBlock'
 import ListItem from './components/templates/ListItem'
 import Literal from './components/templates/Literal'
 import LiteralBlock from './components/templates/LiteralBlock'
@@ -58,6 +60,8 @@ if (
   Figure ||
   Image ||
   Inline ||
+  LineSingle ||
+  LineBlock ||
   ListItem ||
   Literal ||
   LiteralBlock ||

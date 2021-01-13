@@ -145,6 +145,36 @@ export const renderEmphasis = element => {
   }
 }
 
+export const renderLineSingle = element => {
+  return {
+    components: {
+      LineSingle: () => import('../components/templates/LineSingle'),
+    },
+    render(h) {
+      return h('LineSingle', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
+export const renderLineBlock = element => {
+  return {
+    components: {
+      LineBlock: () => import('../components/templates/LineBlock'),
+    },
+    render(h) {
+      return h('LineBlock', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
 export const renderLiteralBlock = element => {
   return {
     components: {

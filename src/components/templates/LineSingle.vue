@@ -2,12 +2,19 @@
 import { sphinxChildren } from '../../mixins/SphinxChildren'
 
 export default {
-  name: 'Comment',
+  name: 'LineSingle',
   mixins: [sphinxChildren],
-  render: function (h) {
+  render(h) {
+    let classes = []
+    const classesValues = this.element.getAttribute('classes')
+    if (classesValues) {
+      classes = classesValues.split(' ')
+    }
     return h(
-      'comment', // tag name
-      {}, // options
+      'div', // tag name
+      {
+        class: classes,
+      },
       [
         h(
           'div',
@@ -17,7 +24,6 @@ export default {
       ], // array of children
     )
   },
-
   props: {
     element: {
       type: Element,
@@ -25,3 +31,5 @@ export default {
   },
 }
 </script>
+
+<style scoped></style>

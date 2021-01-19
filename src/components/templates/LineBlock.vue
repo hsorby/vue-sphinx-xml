@@ -5,7 +5,7 @@ export default {
   name: 'LineBlock',
   mixins: [sphinxChildren],
   render(h) {
-    let classes = []
+    let classes = ['line_block']
     const classesValues = this.element.getAttribute('classes')
     if (classesValues) {
       classes = classesValues.split(' ')

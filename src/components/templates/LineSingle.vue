@@ -5,7 +5,7 @@ export default {
   name: 'LineSingle',
   mixins: [sphinxChildren],
   render(h) {
-    let classes = []
+    let classes = ['line_single']
     const classesValues = this.element.getAttribute('classes')
     if (classesValues) {
       classes = classesValues.split(' ')

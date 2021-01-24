@@ -4,10 +4,12 @@ import { sphinxChildren } from '../../mixins/SphinxChildren'
 export default {
   name: 'Comment',
   mixins: [sphinxChildren],
-  render: function (h) {
+  render(h) {
     return h(
-      'comment', // tag name
-      {}, // options
+      'div', // tag name
+      {
+        class: 'sphinx-comment',
+      },
       [
         h(
           'div',
@@ -17,7 +19,6 @@ export default {
       ], // array of children
     )
   },
-
   props: {
     element: {
       type: Element,
@@ -25,3 +26,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.sphinx-comment {
+  display: none;
+}
+</style>

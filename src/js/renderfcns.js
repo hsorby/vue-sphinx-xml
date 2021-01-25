@@ -145,6 +145,36 @@ export const renderEmphasis = element => {
   }
 }
 
+export const renderLineSingle = element => {
+  return {
+    components: {
+      LineSingle: () => import('../components/templates/LineSingle'),
+    },
+    render(h) {
+      return h('LineSingle', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
+export const renderLineBlock = element => {
+  return {
+    components: {
+      LineBlock: () => import('../components/templates/LineBlock'),
+    },
+    render(h) {
+      return h('LineBlock', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
 export const renderLiteralBlock = element => {
   return {
     components: {
@@ -409,6 +439,66 @@ export const renderComment = element => {
     },
     render(h) {
       return h('Comment', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}
+
+export const renderTable = element => {
+  return {
+    components: {
+      Table: () => import('../components/templates/Table'),
+    },
+    render(h) {
+      return h('Table', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}
+
+export const renderTableBody = element => {
+  return {
+    components: {
+      TableBody: () => import('../components/templates/TableBody'),
+    },
+    render(h) {
+      return h('TableBody', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}
+
+export const renderTableRow = element => {
+  return {
+    components: {
+      TableRow: () => import('../components/templates/TableRow'),
+    },
+    render(h) {
+      return h('TableRow', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}
+
+export const renderTableEntry = element => {
+  return {
+    components: {
+      TableEntry: () => import('../components/templates/TableEntry'),
+    },
+    render(h) {
+      return h('TableEntry', {
         props: {
           element: element,
         },

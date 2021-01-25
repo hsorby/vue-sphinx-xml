@@ -2,21 +2,26 @@
 import { sphinxChildren } from '../../mixins/SphinxChildren'
 
 export default {
-  name: 'Comment',
+  name: 'Table',
   mixins: [sphinxChildren],
   render(h) {
+    let classes = []
+    const classesValues = this.element.getAttribute('classes')
+    if (classesValues) {
+      classes = classesValues.split(' ')
+    }
     return h(
-      'div', // tag name
+      'table', 
       {
-        class: 'sphinx-comment',
+        class: classes, 
       },
       [
         h(
-          'div',
-          {},
+          'table',  
+          { class: classes },
           this.children.map(child => h(child)),
         ),
-      ], // array of children
+      ], 
     )
   },
   props: {
@@ -27,8 +32,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.sphinx-comment {
-  display: none;
-}
-</style>
+<style scoped></style>

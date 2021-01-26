@@ -46,7 +46,7 @@ Vue.use(VueHighlightJS)
 ```
 
 The line `import 'highlight.js/styles/xcode.css'` is one of many styles available from highlightjs that may be imported.
-See ![highlightjs styles](https://highlightjs.org/static/demo/) for a comprehensive list of available styles.
+See [highlightjs styles](https://highlightjs.org/static/demo/) for a comprehensive list of available styles.
 
 ### Module component
 

@@ -33,6 +33,10 @@ import {
   renderTableEntry,
   renderLineSingle,
   renderLineBlock,
+  renderDefinitionList,
+  renderDefinitionListItem,
+  renderDefinition,
+  renderTerm,
 } from '../js/renderfcns'
 
 export const sphinxChildren = {
@@ -175,6 +179,14 @@ export const sphinxChildren = {
         childComponent = renderLineSingle(node)
       } else if (node.nodeName === 'line_block') {
         childComponent = renderLineBlock(node)
+      } else if (node.nodeName === 'definition_list') {
+        childComponent = renderDefinitionList(node)
+      } else if (node.nodeName === 'definition_list_item') {
+        childComponent = renderDefinitionListItem(node)
+      } else if (node.nodeName === 'definition') {
+        childComponent = renderDefinition(node)
+      } else if (node.nodeName === 'term') {
+        childComponent = renderTerm(node)
       } else if (node.nodeName === 'colspec') {
         // Do nothing: ignore this type and all its children.
       } else if (node.nodeName === '#text') {

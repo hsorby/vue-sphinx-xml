@@ -506,3 +506,64 @@ export const renderTableEntry = element => {
     },
   }
 }
+
+export const renderDefinitionList = element => {
+  return {
+    components: {
+      DefinitionList: () => import('../components/templates/DefinitionList'),
+    },
+    render(h) {
+      return h('DefinitionList', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}
+
+export const renderDefinitionListItem = element => {
+  return {
+    components: {
+      DefinitionListItem: () =>
+        import('../components/templates/DefinitionListItem'),
+    },
+    render(h) {
+      return h('DefinitionListItem', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}
+
+export const renderDefinition = element => {
+  return {
+    components: {
+      Definition: () => import('../components/templates/Definition'),
+    },
+    render(h) {
+      return h('Definition', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}
+
+export const renderTerm = element => {
+  return {
+    components: {
+      Term: () => import('../components/templates/Term'),
+    },
+    render(h) {
+      return h('Term', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}

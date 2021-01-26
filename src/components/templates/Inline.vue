@@ -7,9 +7,7 @@ export default {
   render(h) {
     return h(
       'span', // tag name
-      {
-        class: this.element.getAttribute('classes').split(' '),
-      },
+      this.dataObject(),
       this.children.map(child => h(child)), // array of children
     )
   },

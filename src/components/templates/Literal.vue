@@ -5,16 +5,9 @@ export default {
   name: 'Literal',
   mixins: [sphinxChildren],
   render(h) {
-    let classes = []
-    const classesValues = this.element.getAttribute('classes')
-    if (classesValues) {
-      classes = classesValues.split(' ')
-    }
     return h(
       'code', // tag name
-      {
-        class: classes,
-      },
+      this.dataObject(),
       [
         h(
           'span',

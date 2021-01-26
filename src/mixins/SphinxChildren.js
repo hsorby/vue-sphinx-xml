@@ -91,7 +91,7 @@ export const sphinxChildren = {
       let dO = {}
       let classes = this.existingClasses
       if (additionalClasses) {
-        classes.concat(additionalClasses)
+        classes = classes.concat(additionalClasses)
       }
       if (classes.length) {
         dO['class'] = classes

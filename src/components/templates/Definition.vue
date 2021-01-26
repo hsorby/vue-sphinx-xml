@@ -7,7 +7,7 @@ export default {
   render(h) {
     return h(
       'dd', // tag name
-      this.dataObject(['definition']),
+      this.dataObject(),
       this.children.map(child => h(child)), // array of children
     )
   },

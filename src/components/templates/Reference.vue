@@ -1,9 +1,11 @@
 <template>
-  <router-link v-if="isInternalReference" :to="routeDescription">
-    {{ element.textContent }}</router-link
-  >
-  <a v-else :href="element.getAttribute('refuri')">{{ element.textContent }}</a>
-</template>
+  <router-link v-if="isInternalReference()" :to="routeDescription">
+    {{ element.textContent }}
+  </router-link>
+  <a v-else :href="element.getAttribute('refuri')" target="_blank">
+    {{ element.textContent }}
+  </a>
+</template> 
 
 <script>
 import { mapGetters } from 'vuex'

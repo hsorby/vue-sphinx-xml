@@ -41,7 +41,10 @@ export const sphinxChildren = {
       let childComponents = []
       let target = null
       this.element.childNodes.forEach(node => {
-        if ((node.nodeName === 'compact_paragraph') || (node.nodeName === 'tgroup')) {
+        if (
+          node.nodeName === 'compact_paragraph' ||
+          node.nodeName === 'tgroup'
+        ) {
           // Skip over this wrapper and directly add its children to this element.
           let childTarget = null
           node.childNodes.forEach(childNode => {
@@ -68,9 +71,29 @@ export const sphinxChildren = {
       })
       return childComponents
     },
+    existingClasses() {
+      let classes = []
+      const classesString = this.element.getAttribute('classes')
+      if (classesString) {
+        classes = classesString.split(' ')
+      }
+
+      return classes
+    },
   },
 
   methods: {
+    dataObject(additionalClasses) {
+      let dO = {}
+      let classes = this.existingClasses
+      if (additionalClasses) {
+        classes.concat(additionalClasses)
+      }
+      if (classes.length) {
+        dO['class'] = classes
+      }
+      return dO
+    },
     renderDispatcher(node, target) {
       let childComponent = null
       if (node.nodeName === 'list_item') {
@@ -154,15 +177,12 @@ export const sphinxChildren = {
         childComponent = renderLineBlock(node)
       } else if (node.nodeName === 'colspec') {
         // Do nothing: ignore this type and all its children.
-      }
-      else if (node.nodeName === '#text') {
+      } else if (node.nodeName === '#text') {
         if (node.nodeValue.trim()) {
           childComponent = renderPlainText(node.nodeValue)
         }
-      }
-      else {
-        console.log('node unknown:', node)
-        throw `Element type not handled: '${node.nodeName}'`
+      } else {
+        throw `Sphinx XML element type not handled: '${node.nodeName}'`
       }
       return childComponent
     },

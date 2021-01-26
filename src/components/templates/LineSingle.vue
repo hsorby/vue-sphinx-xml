@@ -5,23 +5,10 @@ export default {
   name: 'LineSingle',
   mixins: [sphinxChildren],
   render(h) {
-    let classes = ['line_single']
-    const classesValues = this.element.getAttribute('classes')
-    if (classesValues) {
-      classes = classesValues.split(' ')
-    }
     return h(
       'div', // tag name
-      {
-        class: classes,
-      },
-      [
-        h(
-          'div',
-          {},
-          this.children.map(child => h(child)),
-        ),
-      ], // array of children
+      this.dataObject(['line_single']),
+      this.children.map(child => h(child)), // array of children
     )
   },
   props: {

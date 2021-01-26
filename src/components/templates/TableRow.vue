@@ -5,23 +5,10 @@ export default {
   name: 'TableRow',
   mixins: [sphinxChildren],
   render(h) {
-    let classes = []
-    const classesValues = this.element.getAttribute('classes')
-    if (classesValues) {
-      classes = classesValues.split(' ')
-    }
     return h(
-      'tr', 
-      {
-        class: classes, 
-      },
-      [
-        h(
-          'tr',  
-          { class: classes },
-          this.children.map(child => h(child)),
-        ),
-      ], 
+      'tr',
+      this.dataObject(),
+      this.children.map(child => h(child)),
     )
   },
   props: {

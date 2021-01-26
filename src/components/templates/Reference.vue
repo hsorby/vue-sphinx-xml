@@ -5,7 +5,7 @@
   <a v-else :href="element.getAttribute('refuri')" target="_blank">
     {{ element.textContent }}
   </a>
-</template> 
+</template>
 
 <script>
 import { mapGetters } from 'vuex'

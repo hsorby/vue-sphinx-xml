@@ -6,6 +6,7 @@ import {
   renderParagraph,
   renderProblematic,
   renderReference,
+  renderNumberReference,
   renderLiteralBlock,
   renderTopic,
   renderCompound,
@@ -37,6 +38,7 @@ import {
   renderDefinitionListItem,
   renderDefinition,
   renderTerm,
+  renderGlossary,
 } from '../js/renderfcns'
 
 export const sphinxChildren = {
@@ -106,6 +108,8 @@ export const sphinxChildren = {
         childComponent = renderParagraph(node)
       } else if (node.nodeName === 'reference') {
         childComponent = renderReference(node)
+      } else if (node.nodeName === 'number_reference') {
+        childComponent = renderNumberReference(node)
       } else if (node.nodeName === 'download_reference') {
         childComponent = renderDownloadReference(node)
       } else if (node.nodeName === 'title_reference') {
@@ -179,6 +183,8 @@ export const sphinxChildren = {
         childComponent = renderLineSingle(node)
       } else if (node.nodeName === 'line_block') {
         childComponent = renderLineBlock(node)
+      } else if (node.nodeName === 'glossary') {
+        childComponent = renderGlossary(node)
       } else if (node.nodeName === 'definition_list') {
         childComponent = renderDefinitionList(node)
       } else if (node.nodeName === 'definition_list_item') {
@@ -187,6 +193,8 @@ export const sphinxChildren = {
         childComponent = renderDefinition(node)
       } else if (node.nodeName === 'term') {
         childComponent = renderTerm(node)
+      } else if (node.nodeName === 'index') {
+        // Do nothing: ignore this type and its children.
       } else if (node.nodeName === 'colspec') {
         // Do nothing: ignore this type and all its children.
       } else if (node.nodeName === '#text') {

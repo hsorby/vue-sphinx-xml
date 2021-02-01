@@ -295,6 +295,21 @@ export const renderReference = element => {
   }
 }
 
+export const renderNumberReference = element => {
+  return {
+    components: {
+      NumberReference: () => import('../components/templates/NumberReference'),
+    },
+    render(h) {
+      return h('NumberReference', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
 export const renderDownloadReference = element => {
   return {
     components: {
@@ -424,6 +439,21 @@ export const renderBlockQuote = element => {
     },
     render(h) {
       return h('BlockQuote', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}
+
+export const renderGlossary = element => {
+  return {
+    components: {
+      Glossary: () => import('../components/templates/Glossary'),
+    },
+    render(h) {
+      return h('Glossary', {
         props: {
           element: element,
         },

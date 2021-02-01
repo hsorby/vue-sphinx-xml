@@ -24,6 +24,7 @@ import Literal from './components/templates/Literal'
 import LiteralBlock from './components/templates/LiteralBlock'
 import Math_ from './components/templates/Math'
 import MathBlock from './components/templates/MathBlock'
+import NumberReference from './components/templates/NumberReference'
 import Paragraph from './components/templates/Paragraph'
 import Problematic from './components/templates/Problematic'
 import Reference from './components/templates/Reference'
@@ -75,6 +76,7 @@ if (
   LiteralBlock ||
   Math_ ||
   MathBlock ||
+  NumberReference ||
   Paragraph ||
   Problematic ||
   Reference ||

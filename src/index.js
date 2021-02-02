@@ -30,8 +30,11 @@ import Paragraph from './components/templates/Paragraph'
 import Problematic from './components/templates/Problematic'
 import Reference from './components/templates/Reference'
 import Reusable from './components/templates/Reusable'
+import Rubric from './components/templates/Rubric'
 import Section from './components/templates/Section'
 import Strong from './components/templates/Strong'
+import Subscript from './components/templates/Subscript'
+import Superscript from './components/templates/Superscript'
 import Table from './components/templates/Table'
 import TableBody from './components/templates/TableBody'
 import TableEntry from './components/templates/TableEntry'
@@ -84,8 +87,11 @@ if (
   Problematic ||
   Reference ||
   Reusable ||
+  Rubric ||
   Section ||
   Strong ||
+  Subscript ||
+  Superscript ||
   Table ||
   TableBody ||
   TableEntry ||

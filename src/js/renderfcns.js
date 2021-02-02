@@ -28,6 +28,22 @@ export const renderEnumeratedList = element => {
   }
 }
 
+export const renderRubric = element => {
+  return {
+    components: {
+      Rubric: () => import('../components/templates/Rubric'),
+    },
+    render(h) {
+      return h('Rubric', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}
+
+
 export const renderSection = (element, level, extraIds) => {
   return {
     components: {
@@ -212,6 +228,36 @@ export const renderStrong = element => {
     },
     render(h) {
       return h('Strong', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
+export const renderSuperscript = element => {
+  return {
+    components: {
+      Superscript: () => import('../components/templates/Superscript'),
+    },
+    render(h) {
+      return h('Superscript', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
+export const renderSubscript = element => {
+  return {
+    components: {
+      Subscript: () => import('../components/templates/Subscript'),
+    },
+    render(h) {
+      return h('Subscript', {
         props: {
           element,
         },

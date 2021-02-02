@@ -30,6 +30,7 @@ import {
   renderComment,
   renderTable,
   renderTableRow,
+  renderTableHead,
   renderTableBody,
   renderTableEntry,
   renderLineSingle,
@@ -175,6 +176,8 @@ export const sphinxChildren = {
         childComponent = renderTable(node)
       } else if (node.nodeName === 'tbody') {
         childComponent = renderTableBody(node)
+      } else if (node.nodeName === 'thead') {
+        childComponent = renderTableHead(node)
       } else if (node.nodeName === 'row') {
         childComponent = renderTableRow(node)
       } else if (node.nodeName === 'entry') {

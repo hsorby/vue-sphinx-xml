@@ -507,6 +507,21 @@ export const renderTableBody = element => {
   }
 }
 
+export const renderTableHead = element => {
+  return {
+    components: {
+      TableHead: () => import('../components/templates/TableHead'),
+    },
+    render(h) {
+      return h('TableHead', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}
+
 export const renderTableRow = element => {
   return {
     components: {

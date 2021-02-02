@@ -67,6 +67,7 @@ if (
   Emphasis ||
   EnumeratedList ||
   Figure ||
+  Glossary ||
   Image ||
   Inline ||
   LineSingle ||

@@ -9,7 +9,6 @@ export default {
       'dt', // tag name
       {
         attrs: this.defineAttrs,
-        class: this.classes
       },
       this.children.map(child => h(child)), // array of children
     )

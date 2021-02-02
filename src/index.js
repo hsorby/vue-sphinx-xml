@@ -35,6 +35,7 @@ import Strong from './components/templates/Strong'
 import Table from './components/templates/Table'
 import TableBody from './components/templates/TableBody'
 import TableEntry from './components/templates/TableEntry'
+import TableHead from './components/templates/TableHead'
 import TableRow from './components/templates/TableRow'
 import Term from './components/templates/Term'
 import Title from './components/templates/Title'
@@ -88,6 +89,7 @@ if (
   Table ||
   TableBody ||
   TableEntry ||
+  TableHead ||
   TableRow ||
   Term ||
   Title ||

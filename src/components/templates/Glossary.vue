@@ -2,12 +2,11 @@
 import { sphinxChildren } from '../../mixins/SphinxChildren'
 
 export default {
-  name: 'DefinitionListItem',
+  name: 'Glossary',
   mixins: [sphinxChildren],
   render(h) {
     return h(
-      // 'div', // tag name
-      'dt',
+      'div', // tag name
       this.dataObject(),
       this.children.map(child => h(child)), // array of children
     )

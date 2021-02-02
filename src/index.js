@@ -15,6 +15,7 @@ import DownloadReference from './components/templates/DownloadReference'
 import Emphasis from './components/templates/Emphasis'
 import EnumeratedList from './components/templates/EnumeratedList'
 import Figure from './components/templates/Figure'
+import Glossary from './components/templates/Glossary'
 import Image from './components/templates/Image'
 import Inline from './components/templates/Inline'
 import LineBlock from './components/templates/LineBlock'
@@ -24,6 +25,7 @@ import Literal from './components/templates/Literal'
 import LiteralBlock from './components/templates/LiteralBlock'
 import Math_ from './components/templates/Math'
 import MathBlock from './components/templates/MathBlock'
+import NumberReference from './components/templates/NumberReference'
 import Paragraph from './components/templates/Paragraph'
 import Problematic from './components/templates/Problematic'
 import Reference from './components/templates/Reference'
@@ -66,6 +68,7 @@ if (
   Emphasis ||
   EnumeratedList ||
   Figure ||
+  Glossary ||
   Image ||
   Inline ||
   LineSingle ||
@@ -75,6 +78,7 @@ if (
   LiteralBlock ||
   Math_ ||
   MathBlock ||
+  NumberReference ||
   Paragraph ||
   Problematic ||
   Reference ||

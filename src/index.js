@@ -10,6 +10,7 @@ import Container from './components/templates/Container'
 import Definition from './components/templates/Definition'
 import DefinitionList from './components/templates/DefinitionList'
 import DefinitionListItem from './components/templates/DefinitionListItem'
+import DirectElementMap from './components/templates/DirectElementMap'
 import Document from './components/templates/Document'
 import DownloadReference from './components/templates/DownloadReference'
 import Emphasis from './components/templates/Emphasis'
@@ -70,6 +71,7 @@ if (
   Definition ||
   DefinitionList ||
   DefinitionListItem ||
+  DirectElementMap ||
   Document ||
   DownloadReference ||
   Emphasis ||

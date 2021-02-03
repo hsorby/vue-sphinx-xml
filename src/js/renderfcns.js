@@ -43,6 +43,21 @@ export const renderRubric = element => {
   }
 }
 
+export const renderLabel = element => {
+  return {
+    components: {
+      Label: () => import('../components/templates/Label'),
+    },
+    render(h) {
+      return h('Label', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}
+
 
 export const renderSection = (element, level, extraIds) => {
   return {
@@ -348,6 +363,36 @@ export const renderNumberReference = element => {
     },
     render(h) {
       return h('NumberReference', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
+export const renderFootnoteReference = element => {
+  return {
+    components: {
+      FootnoteReference: () => import('../components/templates/FootnoteReference'),
+    },
+    render(h) {
+      return h('FootnoteReference', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
+export const renderFootnote = element => {
+  return {
+    components: {
+      Footnote: () => import('../components/templates/Footnote'),
+    },
+    render(h) {
+      return h('Footnote', {
         props: {
           element,
         },

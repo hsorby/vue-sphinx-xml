@@ -15,9 +15,12 @@ import DownloadReference from './components/templates/DownloadReference'
 import Emphasis from './components/templates/Emphasis'
 import EnumeratedList from './components/templates/EnumeratedList'
 import Figure from './components/templates/Figure'
+import Footnote from './components/templates/Footnote'
+import FootnoteReference from './components/templates/FootnoteReference'
 import Glossary from './components/templates/Glossary'
 import Image from './components/templates/Image'
 import Inline from './components/templates/Inline'
+import Label from './components/templates/Label'
 import LineBlock from './components/templates/LineBlock'
 import LineSingle from './components/templates/LineSingle'
 import ListItem from './components/templates/ListItem'
@@ -72,9 +75,12 @@ if (
   Emphasis ||
   EnumeratedList ||
   Figure ||
+  Footnote ||
+  FootnoteReference ||
   Glossary ||
   Image ||
   Inline ||
+  Label ||
   LineSingle ||
   LineBlock ||
   ListItem ||

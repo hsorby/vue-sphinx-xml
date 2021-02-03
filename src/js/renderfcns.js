@@ -238,6 +238,21 @@ export const renderFootnoteReference = element => {
   }
 }
 
+export const renderFootnote = element => {
+  return {
+    components: {
+      FootnoteReference: () => import('../components/templates/Footnote'),
+    },
+    render(h) {
+      return h('Footnote', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
 export const renderDownloadReference = element => {
   return {
     components: {

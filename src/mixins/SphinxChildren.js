@@ -6,6 +6,7 @@ import {
   renderDirectElementMap,
   renderDownloadReference,
   renderFigure,
+  renderFootnote,
   renderFootnoteReference,
   renderImage,
   renderLineBlock,
@@ -74,22 +75,13 @@ export const sphinxChildren = {
       })
       return childComponents
     },
-    existingClasses() {
-      let classes = []
-      const classesString = this.element.getAttribute('classes')
-      if (classesString) {
-        classes = classesString.split(' ')
-      }
-
-      return classes
-    },
   },
 
   methods: {
     dataObject(additionalClasses) {
       let dO = {}
 
-      let classes = this.existingClasses
+      let classes = this.element.classList
       if (additionalClasses) {
         classes = classes.concat(additionalClasses)
       }
@@ -127,7 +119,6 @@ export const sphinxChildren = {
         ['definition_list_item', 'dt'],
         ['emphasis', 'em'],
         ['enumerated_list', 'ol'],
-        ['footnote', 'div'],
         ['glossary', 'div'],
         ['inline', 'span'],
         ['label', 'span'],
@@ -164,6 +155,8 @@ export const sphinxChildren = {
           childComponent = renderDownloadReference(node)
         } else if (node.nodeName === 'figure') {
           childComponent = renderFigure(node)
+        } else if (node.nodeName === 'footnote') {
+          childComponent = renderFootnote(node)
         } else if (node.nodeName === 'footnote_reference') {
           childComponent = renderFootnoteReference(node)
         } else if (node.nodeName === 'image') {

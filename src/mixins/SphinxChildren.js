@@ -40,9 +40,23 @@ import {
   renderDefinition,
   renderTerm,
   renderGlossary,
+  renderDirectElementMap,
 } from '../js/renderfcns'
 
+const isEmpty = d => {
+  for (const i in d) {
+    return false
+  }
+
+  return true
+}
+
 export const sphinxChildren = {
+  props: {
+    element: {
+      type: Element,
+    },
+  },
   computed: {
     children() {
       let childComponents = []
@@ -92,120 +106,167 @@ export const sphinxChildren = {
   methods: {
     dataObject(additionalClasses) {
       let dO = {}
+
       let classes = this.existingClasses
       if (additionalClasses) {
         classes = classes.concat(additionalClasses)
       }
+
+      let attrs = this.extractId()
+
       if (classes.length) {
         dO['class'] = classes
       }
+      if (!isEmpty(attrs)) {
+        dO['attrs'] = attrs
+      }
       return dO
     },
+    extractId() {
+      // Inserting the id of the first term in a collection as the contents of the item.
+      if (
+        this.element.getAttribute('ids') &&
+        this.element.getAttribute('ids').length > 0
+      ) {
+        const ids = this.element.getAttribute('ids').split(' ')
+        const id = ids[0]
+        return {
+          id,
+        }
+      }
+      return {}
+    },
     renderDispatcher(node, target) {
+      const nodeMap = new Map([
+        ['bullet_list', 'ul'],
+        ['caption', 'figcaption'],
+        ['definition', 'dd'],
+        ['definition_list', 'dl'],
+        ['definition_list_item', 'dt'],
+        ['emphasis', 'em'],
+        ['enumerated_list', 'ol'],
+        ['glossary', 'div'],
+        ['inline', 'span'],
+        ['list_item', 'li'],
+        ['paragraph', 'p'],
+        ['strong', 'strong'],
+        ['table', 'table'],
+        ['tbody', 'tbody'],
+        ['entry', 'td'],
+        ['row', 'tr'],
+        ['thead', 'thead'],
+        ['term', 'dt'],
+        ['title_reference', 'cite'],
+      ])
       let childComponent = null
-      if (node.nodeName === 'list_item') {
-        childComponent = renderListItem(node)
-      } else if (node.nodeName === 'paragraph') {
-        childComponent = renderParagraph(node)
-      } else if (node.nodeName === 'reference') {
-        childComponent = renderReference(node)
-      } else if (node.nodeName === 'number_reference') {
-        childComponent = renderNumberReference(node)
-      } else if (node.nodeName === 'download_reference') {
-        childComponent = renderDownloadReference(node)
-      } else if (node.nodeName === 'title_reference') {
-        childComponent = renderTitleReference(node)
-      } else if (node.nodeName === 'bullet_list') {
-        childComponent = renderBulletList(node)
-      } else if (node.nodeName === 'enumerated_list') {
-        childComponent = renderEnumeratedList(node)
-      } else if (node.nodeName === 'title') {
-        let parent = this.$parent
-        let depth = 1
-        let isTopic = false
-        if (parent.$options.name === 'AnonymousTopic') {
-          isTopic = true
-        } else {
-          while (parent && parent.$options.name !== 'SphinxPage') {
-            if (parent.$options.name === 'Section') {
-              depth += 1
-            }
-            parent = parent.$parent
-          }
-        }
-        childComponent = renderTitle(node, depth, isTopic)
-      } else if (node.nodeName === 'section') {
-        childComponent = renderSection(node, target)
-      } else if (node.nodeName === 'literal_block') {
-        childComponent = renderLiteralBlock(node)
-      } else if (node.nodeName === 'literal') {
-        childComponent = renderLiteral(node)
-      } else if (node.nodeName === 'math_block') {
-        childComponent = renderMathBlock(node)
-      } else if (node.nodeName === 'math') {
-        childComponent = renderMath(node)
-      } else if (node.nodeName === 'figure') {
-        childComponent = renderFigure(node)
-      } else if (node.nodeName === 'image') {
-        childComponent = renderImage(node)
-      } else if (node.nodeName === 'caption') {
-        childComponent = renderCaption(node)
-      } else if (node.nodeName === 'topic') {
-        childComponent = renderTopic(node)
-      } else if (node.nodeName === 'compound') {
-        childComponent = renderCompound(node)
-      } else if (node.nodeName === 'container') {
-        childComponent = renderContainer(node)
-      } else if (node.nodeName === 'inline') {
-        childComponent = renderInline(node)
-      } else if (node.nodeName === 'block_quote') {
-        childComponent = renderBlockQuote(node)
-      } else if (node.nodeName === 'strong') {
-        childComponent = renderStrong(node)
-      } else if (node.nodeName === 'emphasis') {
-        childComponent = renderEmphasis(node)
-      } else if (node.nodeName === 'transition') {
-        childComponent = renderTransition()
-      } else if (node.nodeName === 'problematic') {
-        childComponent = renderProblematic(node)
-      } else if (node.nodeName === 'todo_node') {
-        childComponent = renderTodoNode(node)
-      } else if (node.nodeName === 'comment') {
-        childComponent = renderComment(node)
-      } else if (node.nodeName === 'table') {
-        childComponent = renderTable(node)
-      } else if (node.nodeName === 'tbody') {
-        childComponent = renderTableBody(node)
-      } else if (node.nodeName === 'thead') {
-        childComponent = renderTableHead(node)
-      } else if (node.nodeName === 'row') {
-        childComponent = renderTableRow(node)
-      } else if (node.nodeName === 'entry') {
-        childComponent = renderTableEntry(node)
-      } else if (node.nodeName === 'line') {
-        childComponent = renderLineSingle(node)
-      } else if (node.nodeName === 'line_block') {
-        childComponent = renderLineBlock(node)
-      } else if (node.nodeName === 'glossary') {
-        childComponent = renderGlossary(node)
-      } else if (node.nodeName === 'definition_list') {
-        childComponent = renderDefinitionList(node)
-      } else if (node.nodeName === 'definition_list_item') {
-        childComponent = renderDefinitionListItem(node)
-      } else if (node.nodeName === 'definition') {
-        childComponent = renderDefinition(node)
-      } else if (node.nodeName === 'term') {
-        childComponent = renderTerm(node)
-      } else if (node.nodeName === 'index') {
-        // Do nothing: ignore this type and its children.
-      } else if (node.nodeName === 'colspec') {
-        // Do nothing: ignore this type and all its children.
-      } else if (node.nodeName === '#text') {
-        if (node.nodeValue.trim()) {
-          childComponent = renderPlainText(node.nodeValue)
-        }
+      if (nodeMap.has(node.nodeName)) {
+        const tagName = nodeMap.get(node.nodeName)
+        childComponent = renderDirectElementMap(node, tagName)
       } else {
-        throw `Sphinx XML element type not handled: '${node.nodeName}'`
+        if (node.nodeName === 'list_item') {
+          childComponent = renderListItem(node)
+        } else if (node.nodeName === 'paragraph') {
+          childComponent = renderParagraph(node)
+        } else if (node.nodeName === 'reference') {
+          childComponent = renderReference(node)
+        } else if (node.nodeName === 'number_reference') {
+          childComponent = renderNumberReference(node)
+        } else if (node.nodeName === 'download_reference') {
+          childComponent = renderDownloadReference(node)
+        } else if (node.nodeName === 'title_reference') {
+          childComponent = renderTitleReference(node)
+        } else if (node.nodeName === 'bullet_list') {
+          childComponent = renderBulletList(node)
+        } else if (node.nodeName === 'enumerated_list') {
+          childComponent = renderEnumeratedList(node)
+        } else if (node.nodeName === 'title') {
+          let parent = this.$parent
+          let depth = 1
+          let isTopic = false
+          if (parent.$options.name === 'AnonymousTopic') {
+            isTopic = true
+          } else {
+            while (parent && parent.$options.name !== 'SphinxPage') {
+              if (parent.$options.name === 'Section') {
+                depth += 1
+              }
+              parent = parent.$parent
+            }
+          }
+          childComponent = renderTitle(node, depth, isTopic)
+        } else if (node.nodeName === 'section') {
+          childComponent = renderSection(node, target)
+        } else if (node.nodeName === 'literal_block') {
+          childComponent = renderLiteralBlock(node)
+        } else if (node.nodeName === 'literal') {
+          childComponent = renderLiteral(node)
+        } else if (node.nodeName === 'math_block') {
+          childComponent = renderMathBlock(node)
+        } else if (node.nodeName === 'math') {
+          childComponent = renderMath(node)
+        } else if (node.nodeName === 'figure') {
+          childComponent = renderFigure(node)
+        } else if (node.nodeName === 'image') {
+          childComponent = renderImage(node)
+        } else if (node.nodeName === 'caption') {
+          childComponent = renderCaption(node)
+        } else if (node.nodeName === 'topic') {
+          childComponent = renderTopic(node)
+        } else if (node.nodeName === 'compound') {
+          childComponent = renderCompound(node)
+        } else if (node.nodeName === 'container') {
+          childComponent = renderContainer(node)
+        } else if (node.nodeName === 'inline') {
+          childComponent = renderInline(node)
+        } else if (node.nodeName === 'block_quote') {
+          childComponent = renderBlockQuote(node)
+        } else if (node.nodeName === 'strong') {
+          childComponent = renderStrong(node)
+        } else if (node.nodeName === 'emphasis') {
+          childComponent = renderEmphasis(node)
+        } else if (node.nodeName === 'transition') {
+          childComponent = renderTransition()
+        } else if (node.nodeName === 'problematic') {
+          childComponent = renderProblematic(node)
+        } else if (node.nodeName === 'todo_node') {
+          childComponent = renderTodoNode(node)
+        } else if (node.nodeName === 'comment') {
+          childComponent = renderComment(node)
+        } else if (node.nodeName === 'table') {
+          childComponent = renderTable(node)
+        } else if (node.nodeName === 'tbody') {
+          childComponent = renderTableBody(node)
+        } else if (node.nodeName === 'thead') {
+          childComponent = renderTableHead(node)
+        } else if (node.nodeName === 'row') {
+          childComponent = renderTableRow(node)
+        } else if (node.nodeName === 'entry') {
+          childComponent = renderTableEntry(node)
+        } else if (node.nodeName === 'line') {
+          childComponent = renderLineSingle(node)
+        } else if (node.nodeName === 'line_block') {
+          childComponent = renderLineBlock(node)
+        } else if (node.nodeName === 'glossary') {
+          childComponent = renderGlossary(node)
+        } else if (node.nodeName === 'definition_list') {
+          childComponent = renderDefinitionList(node)
+        } else if (node.nodeName === 'definition_list_item') {
+          childComponent = renderDefinitionListItem(node)
+        } else if (node.nodeName === 'definition') {
+          childComponent = renderDefinition(node)
+        } else if (node.nodeName === 'term') {
+          childComponent = renderTerm(node)
+        } else if (node.nodeName === 'index') {
+          // Do nothing: ignore this type and its children.
+        } else if (node.nodeName === 'colspec') {
+          // Do nothing: ignore this type and all its children.
+        } else if (node.nodeName === '#text') {
+          if (node.nodeValue.trim()) {
+            childComponent = renderPlainText(node.nodeValue)
+          }
+        } else {
+          throw `Sphinx XML element type not handled: '${node.nodeName}'`
+        }
       }
       return childComponent
     },

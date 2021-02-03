@@ -7,10 +7,7 @@ export default {
   render(h) {
     return h(
       'figure', // tag name
-      {
-        attrs: this.defineAttrs,
-        class: this.classes,
-      },
+      this.dataObject(this.classes),
       this.children.map(child => h(child)),
     )
   },
@@ -31,13 +28,6 @@ export default {
         }
       })
       return classes
-    },
-    defineAttrs() {
-      const ids = this.element.getAttribute('ids').split(' ')
-      const id = ids[0]
-      return {
-        id,
-      }
     },
   },
 }

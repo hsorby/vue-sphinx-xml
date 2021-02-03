@@ -1,10 +1,4 @@
 export const baseDiv = {
-  props: {
-    element: {
-      type: Element,
-    },
-  },
-
   computed: {
     classes() {
       let classesString = this.element.getAttribute('classes')

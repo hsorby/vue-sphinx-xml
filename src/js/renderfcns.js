@@ -1,3 +1,20 @@
+export const renderDirectElementMap = (element, tagName) => {
+  return {
+    components: {
+      DirectElementMap: () =>
+        import('../components/templates/DirectElementMap'),
+    },
+    render(h) {
+      return h('DirectElementMap', {
+        props: {
+          element,
+          tagName,
+        },
+      })
+    },
+  }
+}
+
 export const renderBulletList = element => {
   return {
     components: {

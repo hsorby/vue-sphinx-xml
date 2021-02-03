@@ -222,6 +222,22 @@ export const renderNumberReference = element => {
   }
 }
 
+export const renderFootnoteReference = element => {
+  return {
+    components: {
+      FootnoteReference: () =>
+        import('../components/templates/FootnoteReference'),
+    },
+    render(h) {
+      return h('FootnoteReference', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
 export const renderDownloadReference = element => {
   return {
     components: {

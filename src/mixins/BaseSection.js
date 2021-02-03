@@ -45,11 +45,14 @@ export const baseSection = {
   methods: {
     separateIds(element) {
       const ids = element.getAttribute('ids')
-      let splitIds = ids.split(' ')
-      if (this.targetId && splitIds.indexOf(this.targetId) < 0) {
-        splitIds.push(this.targetId)
+      if (ids !== null) {
+        let splitIds = ids.split(' ')
+        if (this.targetId && splitIds.indexOf(this.targetId) < 0) {
+          splitIds.push(this.targetId)
+        }
+        return { id: splitIds.splice(0, 1), extraIds: splitIds }
       }
-      return { id: splitIds.splice(0, 1), extraIds: splitIds }
+      return {}
     },
   },
 }

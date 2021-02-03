@@ -6,6 +6,7 @@ import {
   renderDirectElementMap,
   renderDownloadReference,
   renderFigure,
+  renderFootnoteReference,
   renderImage,
   renderLineBlock,
   renderLineSingle,
@@ -126,11 +127,15 @@ export const sphinxChildren = {
         ['definition_list_item', 'dt'],
         ['emphasis', 'em'],
         ['enumerated_list', 'ol'],
-        ['glossary', 'div'],
+        ['footnote', 'div'][('glossary', 'div')],
         ['inline', 'span'],
+        ['label', 'span'],
         ['list_item', 'li'],
         ['paragraph', 'p'],
+        ['rubric', 'h3'],
         ['strong', 'strong'],
+        ['subscript', 'sub'],
+        ['superscript', 'sup'],
         ['table', 'table'],
         ['tbody', 'tbody'],
         ['entry', 'td'],
@@ -144,7 +149,11 @@ export const sphinxChildren = {
         const tagName = nodeMap.get(node.nodeName)
         childComponent = renderDirectElementMap(node, tagName)
       } else {
-        if (node.nodeName === 'reference') {
+        if (node.nodeName === 'block_quote') {
+          childComponent = renderBlockQuote(node)
+        } else if (node.nodeName === 'footnote_reference') {
+          childComponent = renderFootnoteReference(node)
+        } else if (node.nodeName === 'reference') {
           childComponent = renderReference(node)
         } else if (node.nodeName === 'number_reference') {
           childComponent = renderNumberReference(node)
@@ -185,8 +194,6 @@ export const sphinxChildren = {
           childComponent = renderCompound(node)
         } else if (node.nodeName === 'container') {
           childComponent = renderContainer(node)
-        } else if (node.nodeName === 'block_quote') {
-          childComponent = renderBlockQuote(node)
         } else if (node.nodeName === 'transition') {
           childComponent = renderTransition()
         } else if (node.nodeName === 'problematic') {

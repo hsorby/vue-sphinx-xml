@@ -241,7 +241,7 @@ export const renderFootnoteReference = element => {
 export const renderFootnote = element => {
   return {
     components: {
-      FootnoteReference: () => import('../components/templates/Footnote'),
+      Footnote: () => import('../components/templates/Footnote'),
     },
     render(h) {
       return h('Footnote', {

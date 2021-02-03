@@ -81,7 +81,7 @@ export const sphinxChildren = {
     dataObject(additionalClasses) {
       let dO = {}
 
-      let classes = this.element.classList
+      let classes = [...this.element.classList]
       if (additionalClasses) {
         classes = classes.concat(additionalClasses)
       }

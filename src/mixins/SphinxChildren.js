@@ -152,14 +152,44 @@ export const sphinxChildren = {
       } else {
         if (node.nodeName === 'block_quote') {
           childComponent = renderBlockQuote(node)
-        } else if (node.nodeName === 'footnote_reference') {
-          childComponent = renderFootnoteReference(node)
-        } else if (node.nodeName === 'reference') {
-          childComponent = renderReference(node)
-        } else if (node.nodeName === 'number_reference') {
-          childComponent = renderNumberReference(node)
+        } else if (node.nodeName === 'colspec') {
+          // Do nothing: ignore this type and all its children.
+        } else if (node.nodeName === 'comment') {
+          childComponent = renderComment(node)
+        } else if (node.nodeName === 'compound') {
+          childComponent = renderCompound(node)
+        } else if (node.nodeName === 'container') {
+          childComponent = renderContainer(node)
         } else if (node.nodeName === 'download_reference') {
           childComponent = renderDownloadReference(node)
+        } else if (node.nodeName === 'figure') {
+          childComponent = renderFigure(node)
+        } else if (node.nodeName === 'footnote_reference') {
+          childComponent = renderFootnoteReference(node)
+        } else if (node.nodeName === 'image') {
+          childComponent = renderImage(node)
+        } else if (node.nodeName === 'index') {
+          // Do nothing: ignore this type and its children.
+        } else if (node.nodeName === 'line') {
+          childComponent = renderLineSingle(node)
+        } else if (node.nodeName === 'line_block') {
+          childComponent = renderLineBlock(node)
+        } else if (node.nodeName === 'literal') {
+          childComponent = renderLiteral(node)
+        } else if (node.nodeName === 'literal_block') {
+          childComponent = renderLiteralBlock(node)
+        } else if (node.nodeName === 'math') {
+          childComponent = renderMath(node)
+        } else if (node.nodeName === 'math_block') {
+          childComponent = renderMathBlock(node)
+        } else if (node.nodeName === 'number_reference') {
+          childComponent = renderNumberReference(node)
+        } else if (node.nodeName === 'problematic') {
+          childComponent = renderProblematic(node)
+        } else if (node.nodeName === 'reference') {
+          childComponent = renderReference(node)
+        } else if (node.nodeName === 'section') {
+          childComponent = renderSection(node, target)
         } else if (node.nodeName === 'title') {
           let parent = this.$parent
           let depth = 1
@@ -175,42 +205,12 @@ export const sphinxChildren = {
             }
           }
           childComponent = renderTitle(node, depth, isTopic)
-        } else if (node.nodeName === 'section') {
-          childComponent = renderSection(node, target)
-        } else if (node.nodeName === 'literal_block') {
-          childComponent = renderLiteralBlock(node)
-        } else if (node.nodeName === 'literal') {
-          childComponent = renderLiteral(node)
-        } else if (node.nodeName === 'math_block') {
-          childComponent = renderMathBlock(node)
-        } else if (node.nodeName === 'math') {
-          childComponent = renderMath(node)
-        } else if (node.nodeName === 'figure') {
-          childComponent = renderFigure(node)
-        } else if (node.nodeName === 'image') {
-          childComponent = renderImage(node)
-        } else if (node.nodeName === 'topic') {
-          childComponent = renderTopic(node)
-        } else if (node.nodeName === 'compound') {
-          childComponent = renderCompound(node)
-        } else if (node.nodeName === 'container') {
-          childComponent = renderContainer(node)
-        } else if (node.nodeName === 'transition') {
-          childComponent = renderTransition()
-        } else if (node.nodeName === 'problematic') {
-          childComponent = renderProblematic(node)
         } else if (node.nodeName === 'todo_node') {
           childComponent = renderTodoNode(node)
-        } else if (node.nodeName === 'comment') {
-          childComponent = renderComment(node)
-        } else if (node.nodeName === 'line') {
-          childComponent = renderLineSingle(node)
-        } else if (node.nodeName === 'line_block') {
-          childComponent = renderLineBlock(node)
-        } else if (node.nodeName === 'index') {
-          // Do nothing: ignore this type and its children.
-        } else if (node.nodeName === 'colspec') {
-          // Do nothing: ignore this type and all its children.
+        } else if (node.nodeName === 'topic') {
+          childComponent = renderTopic(node)
+        } else if (node.nodeName === 'transition') {
+          childComponent = renderTransition()
         } else if (node.nodeName === '#text') {
           if (node.nodeValue.trim()) {
             childComponent = renderPlainText(node.nodeValue)

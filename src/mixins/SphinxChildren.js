@@ -1,46 +1,27 @@
 import {
-  renderBulletList,
-  renderListItem,
-  renderTitle,
-  renderSection,
-  renderParagraph,
-  renderProblematic,
-  renderReference,
-  renderNumberReference,
-  renderLiteralBlock,
-  renderTopic,
-  renderCompound,
   renderBlockQuote,
-  renderMathBlock,
+  renderComment,
+  renderCompound,
   renderContainer,
-  renderEnumeratedList,
-  renderPlainText,
-  renderStrong,
-  renderLiteral,
-  renderInline,
-  renderTitleReference,
-  renderEmphasis,
-  renderMath,
-  renderTransition,
+  renderDirectElementMap,
   renderDownloadReference,
   renderFigure,
-  renderCaption,
   renderImage,
-  renderTodoNode,
-  renderComment,
-  renderTable,
-  renderTableRow,
-  renderTableHead,
-  renderTableBody,
-  renderTableEntry,
-  renderLineSingle,
   renderLineBlock,
-  renderDefinitionList,
-  renderDefinitionListItem,
-  renderDefinition,
-  renderTerm,
-  renderGlossary,
-  renderDirectElementMap,
+  renderLineSingle,
+  renderLiteral,
+  renderLiteralBlock,
+  renderMath,
+  renderMathBlock,
+  renderNumberReference,
+  renderPlainText,
+  renderProblematic,
+  renderReference,
+  renderSection,
+  renderTitle,
+  renderTopic,
+  renderTransition,
+  renderTodoNode,
 } from '../js/renderfcns'
 
 const isEmpty = d => {
@@ -163,22 +144,12 @@ export const sphinxChildren = {
         const tagName = nodeMap.get(node.nodeName)
         childComponent = renderDirectElementMap(node, tagName)
       } else {
-        if (node.nodeName === 'list_item') {
-          childComponent = renderListItem(node)
-        } else if (node.nodeName === 'paragraph') {
-          childComponent = renderParagraph(node)
-        } else if (node.nodeName === 'reference') {
+        if (node.nodeName === 'reference') {
           childComponent = renderReference(node)
         } else if (node.nodeName === 'number_reference') {
           childComponent = renderNumberReference(node)
         } else if (node.nodeName === 'download_reference') {
           childComponent = renderDownloadReference(node)
-        } else if (node.nodeName === 'title_reference') {
-          childComponent = renderTitleReference(node)
-        } else if (node.nodeName === 'bullet_list') {
-          childComponent = renderBulletList(node)
-        } else if (node.nodeName === 'enumerated_list') {
-          childComponent = renderEnumeratedList(node)
         } else if (node.nodeName === 'title') {
           let parent = this.$parent
           let depth = 1
@@ -208,22 +179,14 @@ export const sphinxChildren = {
           childComponent = renderFigure(node)
         } else if (node.nodeName === 'image') {
           childComponent = renderImage(node)
-        } else if (node.nodeName === 'caption') {
-          childComponent = renderCaption(node)
         } else if (node.nodeName === 'topic') {
           childComponent = renderTopic(node)
         } else if (node.nodeName === 'compound') {
           childComponent = renderCompound(node)
         } else if (node.nodeName === 'container') {
           childComponent = renderContainer(node)
-        } else if (node.nodeName === 'inline') {
-          childComponent = renderInline(node)
         } else if (node.nodeName === 'block_quote') {
           childComponent = renderBlockQuote(node)
-        } else if (node.nodeName === 'strong') {
-          childComponent = renderStrong(node)
-        } else if (node.nodeName === 'emphasis') {
-          childComponent = renderEmphasis(node)
         } else if (node.nodeName === 'transition') {
           childComponent = renderTransition()
         } else if (node.nodeName === 'problematic') {
@@ -232,30 +195,10 @@ export const sphinxChildren = {
           childComponent = renderTodoNode(node)
         } else if (node.nodeName === 'comment') {
           childComponent = renderComment(node)
-        } else if (node.nodeName === 'table') {
-          childComponent = renderTable(node)
-        } else if (node.nodeName === 'tbody') {
-          childComponent = renderTableBody(node)
-        } else if (node.nodeName === 'thead') {
-          childComponent = renderTableHead(node)
-        } else if (node.nodeName === 'row') {
-          childComponent = renderTableRow(node)
-        } else if (node.nodeName === 'entry') {
-          childComponent = renderTableEntry(node)
         } else if (node.nodeName === 'line') {
           childComponent = renderLineSingle(node)
         } else if (node.nodeName === 'line_block') {
           childComponent = renderLineBlock(node)
-        } else if (node.nodeName === 'glossary') {
-          childComponent = renderGlossary(node)
-        } else if (node.nodeName === 'definition_list') {
-          childComponent = renderDefinitionList(node)
-        } else if (node.nodeName === 'definition_list_item') {
-          childComponent = renderDefinitionListItem(node)
-        } else if (node.nodeName === 'definition') {
-          childComponent = renderDefinition(node)
-        } else if (node.nodeName === 'term') {
-          childComponent = renderTerm(node)
         } else if (node.nodeName === 'index') {
           // Do nothing: ignore this type and its children.
         } else if (node.nodeName === 'colspec') {

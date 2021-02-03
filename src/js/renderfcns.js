@@ -15,36 +15,6 @@ export const renderDirectElementMap = (element, tagName) => {
   }
 }
 
-export const renderBulletList = element => {
-  return {
-    components: {
-      BulletList: () => import('../components/templates/BulletList'),
-    },
-    render(h) {
-      return h('BulletList', {
-        props: {
-          element: element,
-        },
-      })
-    },
-  }
-}
-
-export const renderEnumeratedList = element => {
-  return {
-    components: {
-      EnumeratedList: () => import('../components/templates/EnumeratedList'),
-    },
-    render(h) {
-      return h('EnumeratedList', {
-        props: {
-          element: element,
-        },
-      })
-    },
-  }
-}
-
 export const renderSection = (element, level, extraIds) => {
   return {
     components: {
@@ -102,21 +72,6 @@ export const renderTransition = () => {
   }
 }
 
-export const renderInline = element => {
-  return {
-    components: {
-      Inline: () => import('../components/templates/Inline'),
-    },
-    render(h) {
-      return h('Inline', {
-        props: {
-          element,
-        },
-      })
-    },
-  }
-}
-
 export const renderMath = element => {
   return {
     components: {
@@ -124,36 +79,6 @@ export const renderMath = element => {
     },
     render(h) {
       return h('Math', {
-        props: {
-          element,
-        },
-      })
-    },
-  }
-}
-
-export const renderTitleReference = element => {
-  return {
-    components: {
-      TitleReference: () => import('../components/templates/TitleReference'),
-    },
-    render(h) {
-      return h('TitleReference', {
-        props: {
-          element,
-        },
-      })
-    },
-  }
-}
-
-export const renderEmphasis = element => {
-  return {
-    components: {
-      Emphasis: () => import('../components/templates/Emphasis'),
-    },
-    render(h) {
-      return h('Emphasis', {
         props: {
           element,
         },
@@ -222,21 +147,6 @@ export const renderLiteral = element => {
   }
 }
 
-export const renderStrong = element => {
-  return {
-    components: {
-      Strong: () => import('../components/templates/Strong'),
-    },
-    render(h) {
-      return h('Strong', {
-        props: {
-          element,
-        },
-      })
-    },
-  }
-}
-
 export const renderMathBlock = element => {
   return {
     components: {
@@ -244,21 +154,6 @@ export const renderMathBlock = element => {
     },
     render(h) {
       return h('MathBlock', {
-        props: {
-          element,
-        },
-      })
-    },
-  }
-}
-
-export const renderParagraph = element => {
-  return {
-    components: {
-      Paragraph: () => import('../components/templates/Paragraph'),
-    },
-    render(h) {
-      return h('Paragraph', {
         props: {
           element,
         },
@@ -373,36 +268,6 @@ export const renderImage = element => {
   }
 }
 
-export const renderCaption = element => {
-  return {
-    components: {
-      Caption: () => import('../components/templates/Caption'),
-    },
-    render(h) {
-      return h('Caption', {
-        props: {
-          element,
-        },
-      })
-    },
-  }
-}
-
-export const renderListItem = element => {
-  return {
-    components: {
-      ListItem: () => import('../components/templates/ListItem'),
-    },
-    render(h) {
-      return h('ListItem', {
-        props: {
-          element: element,
-        },
-      })
-    },
-  }
-}
-
 export const renderCompound = element => {
   return {
     components: {
@@ -464,21 +329,6 @@ export const renderBlockQuote = element => {
   }
 }
 
-export const renderGlossary = element => {
-  return {
-    components: {
-      Glossary: () => import('../components/templates/Glossary'),
-    },
-    render(h) {
-      return h('Glossary', {
-        props: {
-          element: element,
-        },
-      })
-    },
-  }
-}
-
 export const renderComment = element => {
   return {
     components: {
@@ -486,142 +336,6 @@ export const renderComment = element => {
     },
     render(h) {
       return h('Comment', {
-        props: {
-          element: element,
-        },
-      })
-    },
-  }
-}
-
-export const renderTable = element => {
-  return {
-    components: {
-      Table: () => import('../components/templates/Table'),
-    },
-    render(h) {
-      return h('Table', {
-        props: {
-          element: element,
-        },
-      })
-    },
-  }
-}
-
-export const renderTableBody = element => {
-  return {
-    components: {
-      TableBody: () => import('../components/templates/TableBody'),
-    },
-    render(h) {
-      return h('TableBody', {
-        props: {
-          element: element,
-        },
-      })
-    },
-  }
-}
-
-export const renderTableHead = element => {
-  return {
-    components: {
-      TableHead: () => import('../components/templates/TableHead'),
-    },
-    render(h) {
-      return h('TableHead', {
-        props: {
-          element: element,
-        },
-      })
-    },
-  }
-}
-
-export const renderTableRow = element => {
-  return {
-    components: {
-      TableRow: () => import('../components/templates/TableRow'),
-    },
-    render(h) {
-      return h('TableRow', {
-        props: {
-          element: element,
-        },
-      })
-    },
-  }
-}
-
-export const renderTableEntry = element => {
-  return {
-    components: {
-      TableEntry: () => import('../components/templates/TableEntry'),
-    },
-    render(h) {
-      return h('TableEntry', {
-        props: {
-          element: element,
-        },
-      })
-    },
-  }
-}
-
-export const renderDefinitionList = element => {
-  return {
-    components: {
-      DefinitionList: () => import('../components/templates/DefinitionList'),
-    },
-    render(h) {
-      return h('DefinitionList', {
-        props: {
-          element: element,
-        },
-      })
-    },
-  }
-}
-
-export const renderDefinitionListItem = element => {
-  return {
-    components: {
-      DefinitionListItem: () =>
-        import('../components/templates/DefinitionListItem'),
-    },
-    render(h) {
-      return h('DefinitionListItem', {
-        props: {
-          element: element,
-        },
-      })
-    },
-  }
-}
-
-export const renderDefinition = element => {
-  return {
-    components: {
-      Definition: () => import('../components/templates/Definition'),
-    },
-    render(h) {
-      return h('Definition', {
-        props: {
-          element: element,
-        },
-      })
-    },
-  }
-}
-
-export const renderTerm = element => {
-  return {
-    components: {
-      Term: () => import('../components/templates/Term'),
-    },
-    render(h) {
-      return h('Term', {
         props: {
           element: element,
         },

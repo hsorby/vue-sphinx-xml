@@ -7,5 +7,3 @@ export default {
   mixins: [baseDiv, sphinxChildren],
 }
 </script>
-
-<style scoped></style>

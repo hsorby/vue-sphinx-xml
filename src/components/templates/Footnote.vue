@@ -9,6 +9,7 @@ export default {
       'div', // tag name
       {
         attrs: this.defineAttrs,
+        class: this.getClassList,
       },
       this.children.map(child => h(child)), // array of children
     )
@@ -19,6 +20,9 @@ export default {
     },
   },
   computed: {
+    getClassList() {
+      return ['footnote', ...this.element.classList]
+    },
     defineAttrs() {
       // Inserting the id of the first term in a collection as the contents of the item.
       if (this.element.getAttribute('ids') && this.element.getAttribute('ids').length > 0) {

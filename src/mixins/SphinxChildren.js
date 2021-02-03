@@ -21,9 +21,9 @@ import {
   renderReference,
   renderSection,
   renderTitle,
+  renderTodoNode,
   renderTopic,
   renderTransition,
-  renderTodoNode,
 } from '../js/renderfcns'
 
 const isEmpty = d => {

@@ -15,9 +15,12 @@ import DownloadReference from './components/templates/DownloadReference'
 import Emphasis from './components/templates/Emphasis'
 import EnumeratedList from './components/templates/EnumeratedList'
 import Figure from './components/templates/Figure'
+import Footnote from './components/templates/Footnote'
+import FootnoteReference from './components/templates/FootnoteReference'
 import Glossary from './components/templates/Glossary'
 import Image from './components/templates/Image'
 import Inline from './components/templates/Inline'
+import Label from './components/templates/Label'
 import LineBlock from './components/templates/LineBlock'
 import LineSingle from './components/templates/LineSingle'
 import ListItem from './components/templates/ListItem'
@@ -30,8 +33,11 @@ import Paragraph from './components/templates/Paragraph'
 import Problematic from './components/templates/Problematic'
 import Reference from './components/templates/Reference'
 import Reusable from './components/templates/Reusable'
+import Rubric from './components/templates/Rubric'
 import Section from './components/templates/Section'
 import Strong from './components/templates/Strong'
+import Subscript from './components/templates/Subscript'
+import Superscript from './components/templates/Superscript'
 import Table from './components/templates/Table'
 import TableBody from './components/templates/TableBody'
 import TableEntry from './components/templates/TableEntry'
@@ -69,9 +75,12 @@ if (
   Emphasis ||
   EnumeratedList ||
   Figure ||
+  Footnote ||
+  FootnoteReference ||
   Glossary ||
   Image ||
   Inline ||
+  Label ||
   LineSingle ||
   LineBlock ||
   ListItem ||
@@ -84,8 +93,11 @@ if (
   Problematic ||
   Reference ||
   Reusable ||
+  Rubric ||
   Section ||
   Strong ||
+  Subscript ||
+  Superscript ||
   Table ||
   TableBody ||
   TableEntry ||

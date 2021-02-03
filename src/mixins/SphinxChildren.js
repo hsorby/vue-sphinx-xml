@@ -16,6 +16,8 @@ import {
   renderEnumeratedList,
   renderPlainText,
   renderStrong,
+  renderSuperscript,
+  renderSubscript,
   renderLiteral,
   renderInline,
   renderTitleReference,
@@ -40,6 +42,10 @@ import {
   renderDefinition,
   renderTerm,
   renderGlossary,
+  renderRubric,
+  renderFootnote,
+  renderFootnoteReference,
+  renderLabel,
 } from '../js/renderfcns'
 
 export const sphinxChildren = {
@@ -162,6 +168,10 @@ export const sphinxChildren = {
         childComponent = renderBlockQuote(node)
       } else if (node.nodeName === 'strong') {
         childComponent = renderStrong(node)
+      } else if (node.nodeName === 'superscript') {
+        childComponent = renderSuperscript(node)
+      } else if (node.nodeName === 'subscript') {
+        childComponent = renderSubscript(node)
       } else if (node.nodeName === 'emphasis') {
         childComponent = renderEmphasis(node)
       } else if (node.nodeName === 'transition') {
@@ -196,6 +206,14 @@ export const sphinxChildren = {
         childComponent = renderDefinition(node)
       } else if (node.nodeName === 'term') {
         childComponent = renderTerm(node)
+      } else if (node.nodeName === 'footnote') {
+        childComponent = renderFootnote(node)
+      } else if (node.nodeName === 'footnote_reference') {
+        childComponent = renderFootnoteReference(node)
+      } else if (node.nodeName === 'rubric') {
+        childComponent = renderRubric(node)
+      } else if (node.nodeName === 'label') {
+        childComponent = renderLabel(node)
       } else if (node.nodeName === 'index') {
         // Do nothing: ignore this type and its children.
       } else if (node.nodeName === 'colspec') {

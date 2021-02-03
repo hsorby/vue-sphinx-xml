@@ -13,7 +13,7 @@ export default {
     },
   },
 
-  render: function(h) {
+  render: function (h) {
     return h(
       'section', // tag name
       {
@@ -22,8 +22,8 @@ export default {
         },
       }, // options
       [
-        ...this.renderExtraIdsSpans.map(span => h(span)),
-        ...this.children.map(child => h(child)),
+        ...this.renderExtraIdsSpans.map((span) => h(span)),
+        ...this.children.map((child) => h(child)),
       ], // array of children
     )
   },
@@ -39,9 +39,9 @@ export default {
   computed: {
     renderExtraIdsSpans() {
       let spans = []
-      this.extraIds.forEach(id => {
+      this.extraIds.forEach((id) => {
         spans.push({
-          render: function(h) {
+          render: function (h) {
             return h('span', { attrs: { id } })
           },
         })
@@ -53,11 +53,14 @@ export default {
   methods: {
     separateIds(element) {
       const ids = element.getAttribute('ids')
-      let splitIds = ids.split(' ')
-      if (this.targetId && splitIds.indexOf(this.targetId) < 0) {
-        splitIds.push(this.targetId)
+      if (ids !== null) {
+        let splitIds = ids.split(' ')
+        if (this.targetId && splitIds.indexOf(this.targetId) < 0) {
+          splitIds.push(this.targetId)
+        }
+        return { id: splitIds.splice(0, 1), extraIds: splitIds }
       }
-      return { id: splitIds.splice(0, 1), extraIds: splitIds }
+      return {}
     },
   },
 }

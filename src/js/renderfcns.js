@@ -28,6 +28,37 @@ export const renderEnumeratedList = element => {
   }
 }
 
+export const renderRubric = element => {
+  return {
+    components: {
+      Rubric: () => import('../components/templates/Rubric'),
+    },
+    render(h) {
+      return h('Rubric', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}
+
+export const renderLabel = element => {
+  return {
+    components: {
+      Label: () => import('../components/templates/Label'),
+    },
+    render(h) {
+      return h('Label', {
+        props: {
+          element: element,
+        },
+      })
+    },
+  }
+}
+
+
 export const renderSection = (element, level, extraIds) => {
   return {
     components: {
@@ -220,6 +251,36 @@ export const renderStrong = element => {
   }
 }
 
+export const renderSuperscript = element => {
+  return {
+    components: {
+      Superscript: () => import('../components/templates/Superscript'),
+    },
+    render(h) {
+      return h('Superscript', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
+export const renderSubscript = element => {
+  return {
+    components: {
+      Subscript: () => import('../components/templates/Subscript'),
+    },
+    render(h) {
+      return h('Subscript', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
 export const renderMathBlock = element => {
   return {
     components: {
@@ -302,6 +363,36 @@ export const renderNumberReference = element => {
     },
     render(h) {
       return h('NumberReference', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
+export const renderFootnoteReference = element => {
+  return {
+    components: {
+      FootnoteReference: () => import('../components/templates/FootnoteReference'),
+    },
+    render(h) {
+      return h('FootnoteReference', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
+export const renderFootnote = element => {
+  return {
+    components: {
+      Footnote: () => import('../components/templates/Footnote'),
+    },
+    render(h) {
+      return h('Footnote', {
         props: {
           element,
         },

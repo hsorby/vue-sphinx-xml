@@ -56,8 +56,7 @@ export const sphinxChildren = {
       this.element.childNodes.forEach(node => {
         if (
           node.nodeName === 'compact_paragraph' ||
-          node.nodeName === 'tgroup' ||
-          node.nodeName === 'raw'
+          node.nodeName === 'tgroup' 
         ) {
           // Skip over this wrapper and directly add its children to this element.
           let childTarget = null

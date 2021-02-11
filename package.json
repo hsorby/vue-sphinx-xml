@@ -3,6 +3,10 @@
   "version": "0.1.5",
   "license": "Apache-2.0",
   "homepage": "https://github.com/hsorby/vue-sphinx-xml#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hsorby/vue-sphinx-xml.git"
+  },
   "bugs": {
     "url": "https://github.com/hsorby/vue-sphinx-xml/issues"
   },

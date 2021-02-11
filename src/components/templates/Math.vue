@@ -1,5 +1,5 @@
 <template>
-  <span class="equation" v-katex="formula"></span>
+  <katex-element :expression="formula"></katex-element>
 </template>
 
 <script>

@@ -27,10 +27,19 @@ import TodoNode from './components/templates/TodoNode'
 import Topic from './components/templates/Topic'
 import Transition from './components/templates/Transition'
 
+import VueHighlightJS from 'vue-highlightjs'
+import VueKatex from 'vue-katex'
+
+import 'highlight.js/styles/xcode.css'
+import 'katex/dist/katex.min.css'
+
 function install(Vue, options = {}) {
   if (!options.store) {
     throw 'Please provide a store!!'
   }
+
+  Vue.use(VueHighlightJS)
+  Vue.use(VueKatex)
 
   // Vue.component('your-component', yourComponent)
 

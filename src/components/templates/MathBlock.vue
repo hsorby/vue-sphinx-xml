@@ -1,14 +1,25 @@
 <template>
-    <!-- TODO Not happy with how this works.  If they're rendered as separate equations then relative formatting will fail ... -->
-    <div>
-      <div v-for="formula in formulas" :key="'math_'+formula.index">
-        <div class="equation" v-katex:display="formula.formula"></div>
-      </div>
+  <!-- TODO Not happy with how this works.  If they're rendered as separate equations then relative 
+  formatting will fail ... but that's a problem for another day, when the alignment markup is actually recognised! -->
+  <div>
+    <div v-for="formula in formulas" :key="'math_' + formula.index">
+      <div class="equation" v-katex="formula.formula"></div>
     </div>
-  <!-- <div class="equation" v-katex="formulas"></div> -->
+  </div>
 </template>
 
 <script>
+// Unsupported delimiters/formatting.
+const skipList = [
+  '&amp;',
+  '\\begin{align}',
+  '\\begin{eqnarray}',
+  '\\begin{equation}',
+  '\\end{align}',
+  '\\end{eqnarray}',
+  '\\end{equation}',
+]
+
 export default {
   name: 'MathBlock',
   props: {
@@ -18,22 +29,18 @@ export default {
   },
 
   computed: {
-    // formulas() {
-    //   let eqn = this.element.innerHTML.replaceAll('&amp;','')
-    //   let head = '\\begin{align}\n'
-    //   let foot = '\n\\end{align}\n'
-    //   return head + eqn + foot
-    // }
     formulas() {
       let formulas = []
       let i = 0
       this.element.innerHTML.split(/\r?\n/).forEach((formula) => {
+        let stripped = formula.replaceAll('&amp;', '')
+        skipList.forEach(item=> {
+          stripped = stripped.replaceAll(item, '')
+        })
+
         if (formula) {
           formulas.push({
-            // TODO: Removing the & from the string, as this causes errors.  Not
-            // sure if it needs the "amsmath" plugin to be installed somewhere in order
-            // to work?
-            formula: formula.replaceAll('&amp;', ''),
+            formula: stripped,
             index: i,
           })
           i++

@@ -1,22 +1,27 @@
 <template>
-  <div class="mathjax">
-    <vue-mathjax
-      v-for="(formula, index) in formulas"
-      :formula="formula"
-      :key="'math_formula_' + index"
-    >
-    </vue-mathjax>
+  <!-- TODO Not happy with how this works.  If they're rendered as separate equations then relative 
+  formatting will fail ... but that's a problem for another day, when the alignment markup is actually recognised! -->
+  <div>
+    <div v-for="formula in formulas" :key="'math_' + formula.index">
+      <div class="equation" v-katex="formula.formula"></div>
+    </div>
   </div>
 </template>
 
 <script>
-import { VueMathjax } from 'vue-mathjax'
+// Unsupported delimiters/formatting.
+const skipList = [
+  '&amp;',
+  '\\begin{align}',
+  '\\begin{eqnarray}',
+  '\\begin{equation}',
+  '\\end{align}',
+  '\\end{eqnarray}',
+  '\\end{equation}',
+]
 
 export default {
   name: 'MathBlock',
-  components: {
-    'vue-mathjax': VueMathjax,
-  },
   props: {
     element: {
       type: Element,
@@ -26,9 +31,19 @@ export default {
   computed: {
     formulas() {
       let formulas = []
-      this.element.innerHTML.split(/\r?\n/).forEach(formula => {
+      let i = 0
+      this.element.innerHTML.split(/\r?\n/).forEach((formula) => {
+        let stripped = formula.replaceAll('&amp;', '')
+        skipList.forEach(item=> {
+          stripped = stripped.replaceAll(item, '')
+        })
+
         if (formula) {
-          formulas.push('$$' + formula + '$$')
+          formulas.push({
+            formula: stripped,
+            index: i,
+          })
+          i++
         }
       })
       return formulas

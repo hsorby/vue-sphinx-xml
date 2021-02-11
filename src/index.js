@@ -41,8 +41,6 @@ function install(Vue, options = {}) {
   Vue.use(VueHighlightJS)
   Vue.use(VueKatex)
 
-  // Vue.component('your-component', yourComponent)
-
   options.store.registerModule('sphinx', SphinxStore)
 }
 

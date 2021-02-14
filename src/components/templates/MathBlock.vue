@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="katex-block">
     <div v-for="(formula, index) in formulas" :key="'math_' + index">
       <katex-element :expression="formula"></katex-element>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <!-- TODO Not happy with how this works.  If they're rendered as separate equations then relative 
   formatting will fail ... but that's a problem for another day, when the alignment markup is actually recognised! -->
-  <div>
+  <div class="equation-block">
     <div v-for="formula in formulas" :key="'math_' + formula.index">
       <div class="equation" v-katex="formula.formula"></div>
     </div>

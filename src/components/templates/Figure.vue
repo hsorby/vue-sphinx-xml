@@ -35,7 +35,6 @@ export default {
       this.element.attributes.forEach((attr) => {
         if (!unrequiredAttrs.includes(attr.name)) {
           attrDict[attr.name] = attr.value
-          alert(attr.name+" = "+attr.value)
         }
       })
       return attrDict

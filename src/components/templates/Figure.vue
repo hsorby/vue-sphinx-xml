@@ -8,7 +8,7 @@ export default {
     return h(
       'figure', // tag name
       this.dataObject(this.classes),
-      this.children.map(child => h(child)),
+      this.children.map(child => h(child, {attrs: this.attrs})),
     )
   },
   props: {
@@ -28,6 +28,17 @@ export default {
         }
       })
       return classes
+    },
+    attrs() {
+      const unrequiredAttrs = ['uri', 'ids', 'names', 'candidates']
+      let attrDict = {}
+      this.element.attributes.forEach((attr) => {
+        if (!unrequiredAttrs.includes(attr.name)) {
+          attrDict[attr.name] = attr.value
+          alert(attr.name+" = "+attr.value)
+        }
+      })
+      return attrDict
     },
   },
 }

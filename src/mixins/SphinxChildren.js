@@ -86,15 +86,36 @@ export const sphinxChildren = {
         classes = classes.concat(additionalClasses)
       }
 
-      let attrs = this.extractId()
+      const id = this.extractId()
+      const attributes = this.attributes()
 
       if (classes.length) {
         dO['class'] = classes
       }
-      if (!isEmpty(attrs)) {
-        dO['attrs'] = attrs
+      if (!isEmpty(attributes) || !isEmpty(id)) {
+        dO['attrs'] = {
+          ...id,
+          ...attributes,
+        }
       }
       return dO
+    },
+    attributes() {
+      const unrequiredAttrs = ['uri', 'ids', 'names', 'candidates', 'classes']
+      const styleAttrs = ['width']
+      let style = ''
+      let attrDict = {}
+      this.element.attributes.forEach(attr => {
+        if (styleAttrs.includes(attr.name)) {
+          style += `${attr.name}: ${attr.value};`
+        } else if (!unrequiredAttrs.includes(attr.name)) {
+          attrDict[attr.name] = attr.value
+        }
+      })
+      if (style) {
+        attrDict.style = style
+      }
+      return attrDict
     },
     extractId() {
       // Inserting the id of the first term in a collection as the contents of the item.

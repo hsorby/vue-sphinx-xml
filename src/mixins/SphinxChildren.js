@@ -1,12 +1,12 @@
 import {
   renderBlockQuote,
-  renderCaption,
   renderComment,
   renderCompound,
   renderContainer,
   renderDirectElementMap,
   renderDownloadReference,
   renderFigure,
+  renderFigureCaption,
   renderFootnote,
   renderFootnoteReference,
   renderImage,
@@ -145,7 +145,7 @@ export const sphinxChildren = {
         if (node.nodeName === 'block_quote') {
           childComponent = renderBlockQuote(node)
         } else if (node.nodeName === 'caption') {
-          childComponent = renderCaption(node)
+          childComponent = renderFigureCaption(node)
         } else if (node.nodeName === 'colspec') {
           // Do nothing: ignore this type and all its children.
         } else if (node.nodeName === 'comment') {

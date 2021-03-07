@@ -284,13 +284,13 @@ export const renderFigure = element => {
   }
 }
 
-export const renderCaption = element => {
+export const renderFigureCaption = element => {
   return {
     components: {
-      Caption: () => import('../components/templates/Caption'),
+      FigureCaption: () => import('../components/templates/FigureCaption'),
     },
     render(h) {
-      return h('Caption', {
+      return h('FigureCaption', {
         props: {
           element,
         },

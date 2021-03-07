@@ -32,7 +32,7 @@ export default {
       return classes
     },
     attrs() {
-      const unrequiredAttrs = ['uri', 'names', 'candidates']
+      const unrequiredAttrs = ['uri', 'names', 'candidates', 'ids']
       let attrDict = {}
       this.element.attributes.forEach((attr) => {
         if (!unrequiredAttrs.includes(attr.name)) {

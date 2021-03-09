@@ -8,8 +8,7 @@ export default {
     return h(
       'figure', // tag name
       this.dataObject(this.classes),
-      this.children.map((child) => h(child, {attrs: this.attrs}),
-      ),
+      this.children.map(child => h(child)),
     )
   },
   props: {

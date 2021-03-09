@@ -10,9 +10,7 @@ export default {
   render(h) {
     return h(
       'img', // tag name
-      {
-        attrs: this.defineAttrs,
-      },
+      this.augmentedDataObject,
       this.children.map(child => h(child)), // array of children
     )
   },
@@ -22,16 +20,10 @@ export default {
     },
   },
   computed: {
-    defineAttrs() {
-      const unrequiredAttrs = ['uri', 'ids', 'names', 'candidates']
-      let attrDict = {}
-      this.element.attributes.forEach(attr => {
-        if(!unrequiredAttrs.includes(attr.name)){
-          attrDict[attr.name] = attr.value
-        }
-      })
-      attrDict['src'] = this.uri()
-      return attrDict
+    augmentedDataObject() {
+      let dataObject = this.dataObject()
+      dataObject.attrs.src = this.uri()
+      return dataObject
     },
     ...mapGetters({
       getImagesURL: 'sphinx/getImagesURL',

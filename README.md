@@ -93,7 +93,7 @@ vue-sphinx-xml requires that you use vue-router. To add a vue-sphinx-xml route u
     path: '/documentation/:pageName*',
     name: 'Documentation',
     // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
+    // this generates a separate chunk (documentation.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "documentation" */ '../views/Documentation.vue')
   }
@@ -103,15 +103,24 @@ Again assuming standard layout.
 
 ### Module math
 
-To render any math in the page vue-sphinx-xml uses MathJax.
-To render math with MathJax add the following to the `head` section of the `public/index.html` file:
+To render any math in the page vue-sphinx-xml uses Katex.
+Katex is not automatically loaded because it is a large package.
+To render math with Katex you need to install the following packages:
 
-```html
-<script
-  type="text/javascript"
-  async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
-></script>
+```bash
+npm install --save katex vue-katex
+```
+
+and edit your `main.js` application file to have the following:
+
+```javascript
+import SphinxXml from 'vue-sphinx-xml'
+import VueKatex from 'vue-katex'
+
+import 'katex/dist/katex.min.css'
+
+Vue.use(SphinxXml, { store })
+Vue.use(VueKatex)
 ```
 
 ## Examples

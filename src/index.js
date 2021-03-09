@@ -9,6 +9,7 @@ import Document_ from './components/templates/Document'
 import DirectElementMap from './components/templates/DirectElementMap'
 import DownloadReference from './components/templates/DownloadReference'
 import Figure from './components/templates/Figure'
+import FigureCaption from './components/templates/FigureCaption'
 import Footnote from './components/templates/Footnote'
 import FootnoteReference from './components/templates/FootnoteReference'
 import Image from './components/templates/Image'
@@ -44,6 +45,7 @@ if (
   Document_ ||
   DownloadReference ||
   Figure ||
+  FigureCaption ||
   Footnote ||
   FootnoteReference ||
   Image ||

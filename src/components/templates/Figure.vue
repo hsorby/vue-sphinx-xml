@@ -8,8 +8,7 @@ export default {
     return h(
       'figure', // tag name
       this.dataObject(this.classes),
-      this.children.map((child) =>
-        h(child, {attrs: this.attrs}),
+      this.children.map((child) => h(child, {attrs: this.attrs}),
       ),
     )
   },
@@ -21,7 +20,7 @@ export default {
   computed: {
     classes() {
       let classes = []
-      this.element.attributes.forEach((attr) => {
+      this.element.attributes.forEach(attr => {
         const attrName = attr.name
         if (attrName !== 'ids' && attrName !== 'names') {
           if (attrName === 'align') {
@@ -32,7 +31,7 @@ export default {
       return classes
     },
     attrs() {
-      const unrequiredAttrs = ['uri', 'names', 'candidates', 'ids']
+      const unrequiredAttrs = ['uri', 'ids', 'names', 'candidates']
       let attrDict = {}
       this.element.attributes.forEach((attr) => {
         if (!unrequiredAttrs.includes(attr.name)) {

@@ -114,7 +114,6 @@ export const sphinxChildren = {
     renderDispatcher(node, target) {
       const nodeMap = new Map([
         ['bullet_list', 'ul'],
-        // ['caption', 'figcaption'],
         ['definition', 'dd'],
         ['definition_list', 'dl'],
         ['definition_list_item', 'dt'],

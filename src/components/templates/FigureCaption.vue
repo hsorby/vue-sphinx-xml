@@ -2,7 +2,7 @@
 import { sphinxChildren } from '../../mixins/SphinxChildren'
 
 export default {
-  name: 'Figure',
+  name: 'FigureCaption',
   mixins: [sphinxChildren],
   render(h) {
     return h(

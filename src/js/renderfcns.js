@@ -284,6 +284,21 @@ export const renderFigure = element => {
   }
 }
 
+export const renderFigureCaption = element => {
+  return {
+    components: {
+      FigureCaption: () => import('../components/templates/FigureCaption'),
+    },
+    render(h) {
+      return h('FigureCaption', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
 export const renderImage = element => {
   return {
     components: {

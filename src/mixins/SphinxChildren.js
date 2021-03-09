@@ -6,6 +6,7 @@ import {
   renderDirectElementMap,
   renderDownloadReference,
   renderFigure,
+  renderFigureCaption,
   renderFootnote,
   renderFootnoteReference,
   renderImage,
@@ -134,7 +135,6 @@ export const sphinxChildren = {
     renderDispatcher(node, target) {
       const nodeMap = new Map([
         ['bullet_list', 'ul'],
-        ['caption', 'figcaption'],
         ['definition', 'dd'],
         ['definition_list', 'dl'],
         ['definition_list_item', 'dt'],
@@ -164,6 +164,8 @@ export const sphinxChildren = {
       } else {
         if (node.nodeName === 'block_quote') {
           childComponent = renderBlockQuote(node)
+        } else if (node.nodeName === 'caption') {
+          childComponent = renderFigureCaption(node)
         } else if (node.nodeName === 'colspec') {
           // Do nothing: ignore this type and all its children.
         } else if (node.nodeName === 'comment') {

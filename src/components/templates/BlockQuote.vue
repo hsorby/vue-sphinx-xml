@@ -17,11 +17,5 @@ export default {
       ], // array of children
     )
   },
-
-  props: {
-    element: {
-      type: Element,
-    },
-  },
 }
 </script>

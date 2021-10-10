@@ -16,6 +16,7 @@ import {
   renderLiteralBlock,
   renderMath,
   renderMathBlock,
+  renderNote,
   renderNumberReference,
   renderPlainText,
   renderProblematic,
@@ -38,7 +39,7 @@ const isEmpty = d => {
 export const sphinxChildren = {
   props: {
     element: {
-      type: Element,
+      type: undefined,
     },
   },
   computed: {
@@ -198,6 +199,8 @@ export const sphinxChildren = {
           childComponent = renderMath(node)
         } else if (node.nodeName === 'math_block') {
           childComponent = renderMathBlock(node)
+        } else if (node.nodeName === 'note') {
+          childComponent = renderNote(node)
         } else if (node.nodeName === 'number_reference') {
           childComponent = renderNumberReference(node)
         } else if (node.nodeName === 'problematic') {

@@ -13,10 +13,5 @@ export default {
     comment.text = text
     return comment
   },
-  props: {
-    element: {
-      type: Element,
-    },
-  },
 }
 </script>

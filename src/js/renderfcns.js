@@ -2,7 +2,7 @@ export const renderDirectElementMap = (element, tagName) => {
   return {
     components: {
       DirectElementMap: () =>
-        import('../components/templates/DirectElementMap'),
+        import('../components/templates/DirectElementMap.vue'),
     },
     render(h) {
       return h('DirectElementMap', {
@@ -18,7 +18,7 @@ export const renderDirectElementMap = (element, tagName) => {
 export const renderSection = (element, level, extraIds) => {
   return {
     components: {
-      Section: () => import('../components/templates/Section'),
+      Section: () => import('../components/templates/Section.vue'),
     },
     render(h) {
       return h('Section', {
@@ -35,7 +35,7 @@ export const renderSection = (element, level, extraIds) => {
 export const renderTitle = (element, level, isTopic) => {
   return {
     components: {
-      Title: () => import('../components/templates/Title'),
+      Title: () => import('../components/templates/Title.vue'),
     },
     render(h) {
       return h(
@@ -75,7 +75,7 @@ export const renderTransition = () => {
 export const renderMath = element => {
   return {
     components: {
-      Math: () => import('../components/templates/Math'),
+      Math: () => import('../components/templates/Math.vue'),
     },
     render(h) {
       return h('Math', {
@@ -90,7 +90,7 @@ export const renderMath = element => {
 export const renderLineSingle = element => {
   return {
     components: {
-      LineSingle: () => import('../components/templates/LineSingle'),
+      LineSingle: () => import('../components/templates/LineSingle.vue'),
     },
     render(h) {
       return h('LineSingle', {
@@ -105,7 +105,7 @@ export const renderLineSingle = element => {
 export const renderLineBlock = element => {
   return {
     components: {
-      LineBlock: () => import('../components/templates/LineBlock'),
+      LineBlock: () => import('../components/templates/LineBlock.vue'),
     },
     render(h) {
       return h('LineBlock', {
@@ -120,7 +120,7 @@ export const renderLineBlock = element => {
 export const renderLiteralBlock = element => {
   return {
     components: {
-      LiteralBlock: () => import('../components/templates/LiteralBlock'),
+      LiteralBlock: () => import('../components/templates/LiteralBlock.vue'),
     },
     render(h) {
       return h('LiteralBlock', {
@@ -135,7 +135,7 @@ export const renderLiteralBlock = element => {
 export const renderLiteral = element => {
   return {
     components: {
-      Literal: () => import('../components/templates/Literal'),
+      Literal: () => import('../components/templates/Literal.vue'),
     },
     render(h) {
       return h('Literal', {
@@ -150,7 +150,7 @@ export const renderLiteral = element => {
 export const renderMathBlock = element => {
   return {
     components: {
-      MathBlock: () => import('../components/templates/MathBlock'),
+      MathBlock: () => import('../components/templates/MathBlock.vue'),
     },
     render(h) {
       return h('MathBlock', {
@@ -165,7 +165,7 @@ export const renderMathBlock = element => {
 export const renderProblematic = element => {
   return {
     components: {
-      Problematic: () => import('../components/templates/Problematic'),
+      Problematic: () => import('../components/templates/Problematic.vue'),
     },
     render(h) {
       return h('Problematic', {
@@ -177,10 +177,25 @@ export const renderProblematic = element => {
   }
 }
 
+export const renderNote = element => {
+  return {
+    components: {
+      Note: () => import('../components/templates/Note.vue'),
+    },
+    render(h) {
+      return h('Note', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
 export const renderTodoNode = element => {
   return {
     components: {
-      TodoNode: () => import('../components/templates/TodoNode'),
+      TodoNode: () => import('../components/templates/TodoNode.vue'),
     },
     render(h) {
       return h('TodoNode', {
@@ -195,7 +210,7 @@ export const renderTodoNode = element => {
 export const renderReference = element => {
   return {
     components: {
-      Reference: () => import('../components/templates/Reference'),
+      Reference: () => import('../components/templates/Reference.vue'),
     },
     render(h) {
       return h('Reference', {
@@ -210,7 +225,8 @@ export const renderReference = element => {
 export const renderNumberReference = element => {
   return {
     components: {
-      NumberReference: () => import('../components/templates/NumberReference'),
+      NumberReference: () =>
+        import('../components/templates/NumberReference.vue'),
     },
     render(h) {
       return h('NumberReference', {
@@ -226,7 +242,7 @@ export const renderFootnoteReference = element => {
   return {
     components: {
       FootnoteReference: () =>
-        import('../components/templates/FootnoteReference'),
+        import('../components/templates/FootnoteReference.vue'),
     },
     render(h) {
       return h('FootnoteReference', {
@@ -241,7 +257,7 @@ export const renderFootnoteReference = element => {
 export const renderFootnote = element => {
   return {
     components: {
-      Footnote: () => import('../components/templates/Footnote'),
+      Footnote: () => import('../components/templates/Footnote.vue'),
     },
     render(h) {
       return h('Footnote', {
@@ -257,7 +273,7 @@ export const renderDownloadReference = element => {
   return {
     components: {
       DownloadReference: () =>
-        import('../components/templates/DownloadReference'),
+        import('../components/templates/DownloadReference.vue'),
     },
     render(h) {
       return h('DownloadReference', {
@@ -272,7 +288,7 @@ export const renderDownloadReference = element => {
 export const renderFigure = element => {
   return {
     components: {
-      Figure: () => import('../components/templates/Figure'),
+      Figure: () => import('../components/templates/Figure.vue'),
     },
     render(h) {
       return h('Figure', {
@@ -287,7 +303,7 @@ export const renderFigure = element => {
 export const renderFigureCaption = element => {
   return {
     components: {
-      FigureCaption: () => import('../components/templates/FigureCaption'),
+      FigureCaption: () => import('../components/templates/FigureCaption.vue'),
     },
     render(h) {
       return h('FigureCaption', {
@@ -302,7 +318,7 @@ export const renderFigureCaption = element => {
 export const renderImage = element => {
   return {
     components: {
-      SphinxImage: () => import('../components/templates/Image'),
+      SphinxImage: () => import('../components/templates/Image.vue'),
     },
     render(h) {
       return h('SphinxImage', {
@@ -317,7 +333,7 @@ export const renderImage = element => {
 export const renderCompound = element => {
   return {
     components: {
-      Compound: () => import('../components/templates/Compound'),
+      Compound: () => import('../components/templates/Compound.vue'),
     },
     render(h) {
       return h('Compound', {
@@ -332,7 +348,7 @@ export const renderCompound = element => {
 export const renderContainer = element => {
   return {
     components: {
-      Container: () => import('../components/templates/Container'),
+      Container: () => import('../components/templates/Container.vue'),
     },
     render(h) {
       return h('Container', {
@@ -348,7 +364,7 @@ export const renderTopic = element => {
   return {
     name: 'AnonymousTopic',
     components: {
-      Topic: () => import('../components/templates/Topic'),
+      Topic: () => import('../components/templates/Topic.vue'),
     },
     render(h) {
       return h('Topic', {
@@ -363,7 +379,7 @@ export const renderTopic = element => {
 export const renderBlockQuote = element => {
   return {
     components: {
-      BlockQuote: () => import('../components/templates/BlockQuote'),
+      BlockQuote: () => import('../components/templates/BlockQuote.vue'),
     },
     render(h) {
       return h('BlockQuote', {
@@ -378,7 +394,7 @@ export const renderBlockQuote = element => {
 export const renderComment = element => {
   return {
     components: {
-      Comment: () => import('../components/templates/Comment'),
+      Comment: () => import('../components/templates/Comment.vue'),
     },
     render(h) {
       return h('Comment', {

@@ -1,32 +1,33 @@
-import SphinxPage from './components/SphinxPage'
+import SphinxPage from './components/SphinxPage.vue'
 import * as SphinxStore from './store/modules/sphinx'
 
-import BlockQuote from './components/templates/BlockQuote'
-import Comment from './components/templates/Comment'
-import Compound from './components/templates/Compound'
-import Container from './components/templates/Container'
-import Document_ from './components/templates/Document'
-import DirectElementMap from './components/templates/DirectElementMap'
-import DownloadReference from './components/templates/DownloadReference'
-import Figure from './components/templates/Figure'
-import FigureCaption from './components/templates/FigureCaption'
-import Footnote from './components/templates/Footnote'
-import FootnoteReference from './components/templates/FootnoteReference'
-import Image from './components/templates/Image'
-import LineBlock from './components/templates/LineBlock'
-import LineSingle from './components/templates/LineSingle'
-import Literal from './components/templates/Literal'
-import LiteralBlock from './components/templates/LiteralBlock'
-import Math_ from './components/templates/Math'
-import MathBlock from './components/templates/MathBlock'
-import NumberReference from './components/templates/NumberReference'
-import Problematic from './components/templates/Problematic'
-import Reference from './components/templates/Reference'
-import Section from './components/templates/Section'
-import Title from './components/templates/Title'
-import TodoNode from './components/templates/TodoNode'
-import Topic from './components/templates/Topic'
-import Transition from './components/templates/Transition'
+import BlockQuote from './components/templates/BlockQuote.vue'
+import Comment from './components/templates/Comment.vue'
+import Compound from './components/templates/Compound.vue'
+import Container from './components/templates/Container.vue'
+import Document_ from './components/templates/Document.vue'
+import DirectElementMap from './components/templates/DirectElementMap.vue'
+import DownloadReference from './components/templates/DownloadReference.vue'
+import Figure from './components/templates/Figure.vue'
+import FigureCaption from './components/templates/FigureCaption.vue'
+import Footnote from './components/templates/Footnote.vue'
+import FootnoteReference from './components/templates/FootnoteReference.vue'
+import Image from './components/templates/Image.vue'
+import LineBlock from './components/templates/LineBlock.vue'
+import LineSingle from './components/templates/LineSingle.vue'
+import Literal from './components/templates/Literal.vue'
+import LiteralBlock from './components/templates/LiteralBlock.vue'
+import Math_ from './components/templates/Math.vue'
+import MathBlock from './components/templates/MathBlock.vue'
+import Note from './components/templates/Note.vue'
+import NumberReference from './components/templates/NumberReference.vue'
+import Problematic from './components/templates/Problematic.vue'
+import Reference from './components/templates/Reference.vue'
+import Section from './components/templates/Section.vue'
+import Title from './components/templates/Title.vue'
+import TodoNode from './components/templates/TodoNode.vue'
+import Topic from './components/templates/Topic.vue'
+import Transition from './components/templates/Transition.vue'
 
 function install(Vue, options = {}) {
   if (!options.store) {
@@ -55,6 +56,7 @@ if (
   LiteralBlock ||
   Math_ ||
   MathBlock ||
+  Note ||
   NumberReference ||
   Problematic ||
   Reference ||

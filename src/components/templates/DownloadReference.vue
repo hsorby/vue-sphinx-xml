@@ -17,11 +17,6 @@ export default {
       this.children.map(child => h(child)),
     )
   },
-  props: {
-    element: {
-      type: Element,
-    },
-  },
   computed: {
     classes() {
       let classes = ['reference', 'internal']

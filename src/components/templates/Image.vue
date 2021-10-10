@@ -14,11 +14,6 @@ export default {
       this.children.map(child => h(child)), // array of children
     )
   },
-  props: {
-    element: {
-      type: Element,
-    },
-  },
   computed: {
     augmentedDataObject() {
       let dataObject = this.dataObject()

@@ -12,9 +12,6 @@ export default {
     )
   },
   props: {
-    element: {
-      type: Element,
-    },
     level: {
       type: Number,
       required: true,

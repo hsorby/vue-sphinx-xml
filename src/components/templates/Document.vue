@@ -4,7 +4,7 @@ import { sphinxChildren } from '../../mixins/SphinxChildren'
 export default {
   name: 'Document',
   props: {
-    element: { type: Element, required: true },
+    element: { type: undefined, required: true },
     id: { type: String },
   },
   mixins: [sphinxChildren],

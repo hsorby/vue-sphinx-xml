@@ -21,7 +21,7 @@ export default {
   name: 'MathBlock',
   props: {
     element: {
-      type: Element,
+      type: undefined,
     },
   },
 

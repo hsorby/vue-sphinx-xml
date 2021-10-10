@@ -11,7 +11,7 @@ export const baseReference = {
   },
   props: {
     element: {
-      type: Element,
+      type: undefined,
       required: true,
     },
   },

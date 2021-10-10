@@ -7,7 +7,7 @@ export default {
   name: 'Math',
   props: {
     element: {
-      type: Element,
+      type: undefined,
     },
   },
 

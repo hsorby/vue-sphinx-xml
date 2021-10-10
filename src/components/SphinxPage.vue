@@ -10,7 +10,7 @@ import { determineRouteUrl } from '../js/utilities'
 export default {
   name: 'SphinxPage',
   components: {
-    document: () => import('./templates/Document'),
+    document: () => import('./templates/Document.vue'),
   },
   props: {
     baseURL: {

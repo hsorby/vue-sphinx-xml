@@ -10,6 +10,7 @@ import {
   renderFootnote,
   renderFootnoteReference,
   renderImage,
+  renderLegend,
   renderLineBlock,
   renderLineSingle,
   renderLiteral,
@@ -185,6 +186,8 @@ export const sphinxChildren = {
           childComponent = renderFootnoteReference(node)
         } else if (node.nodeName === 'image') {
           childComponent = renderImage(node)
+        } else if (node.nodeName === 'legend') {
+          childComponent = renderLegend(node)
         } else if (node.nodeName === 'index') {
           // Do nothing: ignore this type and its children.
         } else if (node.nodeName === 'line') {

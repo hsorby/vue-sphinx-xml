@@ -330,6 +330,21 @@ export const renderImage = element => {
   }
 }
 
+export const renderLegend = element => {
+  return {
+    components: {
+      Legend: () => import('../components/templates/Legend.vue'),
+    },
+    render(h) {
+      return h('Legend', {
+        props: {
+          element,
+        },
+      })
+    },
+  }
+}
+
 export const renderCompound = element => {
   return {
     components: {

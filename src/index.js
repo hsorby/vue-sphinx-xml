@@ -13,6 +13,7 @@ import FigureCaption from './components/templates/FigureCaption.vue'
 import Footnote from './components/templates/Footnote.vue'
 import FootnoteReference from './components/templates/FootnoteReference.vue'
 import Image from './components/templates/Image.vue'
+import Legend from './components/templates/Legend.vue'
 import LineBlock from './components/templates/LineBlock.vue'
 import LineSingle from './components/templates/LineSingle.vue'
 import Literal from './components/templates/Literal.vue'
@@ -50,6 +51,7 @@ if (
   Footnote ||
   FootnoteReference ||
   Image ||
+  Legend ||
   LineSingle ||
   LineBlock ||
   Literal ||

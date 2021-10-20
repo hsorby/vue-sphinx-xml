@@ -11,7 +11,7 @@ export default {
   name: 'Problematic',
   props: {
     element: {
-      type: Object,
+      type: undefined,
       required: true,
     },
   },

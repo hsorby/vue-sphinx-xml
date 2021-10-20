@@ -9,7 +9,7 @@ export default {
   name: 'LiteralBlock',
   props: {
     element: {
-      type: Object,
+      type: undefined,
     },
   },
   computed: {

@@ -9,8 +9,9 @@ import VueKatex from 'vue-katex'
 import 'highlight.js/styles/xcode.css'
 import 'katex/dist/katex.min.css'
 
-Vue.use(VueHighlightJS)
 Vue.config.productionTip = false
+
+Vue.use(VueHighlightJS)
 Vue.use(VueKatex)
 
 new Vue({

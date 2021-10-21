@@ -30,14 +30,6 @@ import TodoNode from './components/templates/TodoNode.vue'
 import Topic from './components/templates/Topic.vue'
 import Transition from './components/templates/Transition.vue'
 
-function install(Vue, options = {}) {
-  if (!options.store) {
-    throw 'Please provide a store!!'
-  }
-
-  options.store.registerModule('sphinx', SphinxStore)
-}
-
 if (
   BlockQuote ||
   Comment ||
@@ -71,5 +63,13 @@ if (
   // Are these things hidden?
 }
 
+function install(Vue, options = {}) {
+  if (!options.store) {
+    throw 'Please provide a store!!'
+  }
+
+  options.store.registerModule('sphinx', SphinxStore)
+}
+
+export default install
 export { SphinxPage }
-export default { install }

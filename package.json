@@ -1,6 +1,6 @@
 {
   "name": "vue-sphinx-xml",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "license": "Apache-2.0",
   "homepage": "https://github.com/hsorby/vue-sphinx-xml#readme",
   "repository": {
@@ -17,7 +17,7 @@
     "documentation",
     "xml"
   ],
-  "main": "src/index.js",
+  "main": "./dist/vue-sphinx-xml.common.js",
   "files": [
     "src",
     "dist/*.js"

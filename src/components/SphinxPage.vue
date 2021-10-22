@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import store from '../store'
+import { mapActions } from 'vuex'
 
 import { determineRouteUrl } from '../js/utilities'
 
@@ -74,6 +74,7 @@ export default {
     this.$emit('updated')
   },
   methods: {
+    ...mapActions('sphinx', ['fetchPage']),
     fetchPageData(routeTo) {
       let pageName = routeTo.params.pageName
       if (!pageName) {
@@ -88,28 +89,27 @@ export default {
           ? `${this.baseURL}/_downloads`
           : this.downloadBaseURL
       const routeURL = determineRouteUrl(routeTo)
-      store
-        .dispatch('sphinx/fetchPage', {
-          page_name: pageName,
-          page_route: routeURL,
-          page_url: this.baseURL,
-          page_downloads: downloadBaseURL,
-          page_images: imagesBaseURL,
-        })
-        .then(element => {
-          if (element) {
-            this.element = element
-            this.id = pageName.replace('/', '_')
-          } else {
-            this.$router.push({
-              name: '404',
-              params: {
-                type: 'page',
-                message: `Could not find Sphinx page '${pageName}.xml'.`,
-              },
-            })
-          }
-        })
+
+      this.fetchPage({
+        page_name: pageName,
+        page_route: routeURL,
+        page_url: this.baseURL,
+        page_downloads: downloadBaseURL,
+        page_images: imagesBaseURL,
+      }).then(element => {
+        if (element) {
+          this.element = element
+          this.id = pageName.replace('/', '_')
+        } else {
+          this.$router.push({
+            name: '404',
+            params: {
+              type: 'page',
+              message: `Could not find Sphinx page '${pageName}.xml'.`,
+            },
+          })
+        }
+      })
     },
   },
 }

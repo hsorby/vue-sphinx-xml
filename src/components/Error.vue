@@ -1,19 +1,17 @@
 <template>
-  <katex-element :expression="node.textContent"></katex-element>
+  <div>
+    <h3>Missing: '{{ componentName }}' from Sphinx XML output</h3>
+    <span>It seems the component was not found.</span>
+  </div>
 </template>
 
 <script setup>
-
 const props = defineProps({
   node: {
     type: undefined,
-    default: null,
   },
   componentName: {
     type: String,
   },
-  properties: {
-    type: Object,
-  }
 })
 </script>

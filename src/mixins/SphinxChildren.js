@@ -40,11 +40,12 @@ const isEmpty = d => {
 export const sphinxChildren = {
   props: {
     element: {
-      type: undefined,
+      type: Object,
     },
   },
   computed: {
     children() {
+      console.log('children@@@@')
       let childComponents = []
       let target = null
       this.element.childNodes.forEach(node => {
@@ -82,6 +83,7 @@ export const sphinxChildren = {
 
   methods: {
     dataObject(additionalClasses) {
+      console.log('data object????')
       let dO = {}
 
       let classes = [...this.element.classList]
@@ -104,6 +106,7 @@ export const sphinxChildren = {
       return dO
     },
     attributes() {
+      console.log('attributes???')
       const unrequiredAttrs = ['uri', 'ids', 'names', 'candidates', 'classes']
       const styleAttrs = ['width']
       let style = ''
@@ -159,6 +162,8 @@ export const sphinxChildren = {
         ['term', 'dt'],
         ['title_reference', 'cite'],
       ])
+      console.log('99999999999')
+      console.log(node, target)
       let childComponent = null
       if (nodeMap.has(node.nodeName)) {
         const tagName = nodeMap.get(node.nodeName)

@@ -1,29 +1,33 @@
 <template>
   <router-link :to="routeDescription">
     <span class="problematic" :id="id">{{
-      element.textContent
+      node.textContent
     }}</span></router-link
   >
 </template>
 
-<script>
-export default {
-  name: 'Problematic',
-  props: {
-    element: {
-      type: undefined,
-      required: true,
-    },
+<script setup>
+import { toRefs, ref } from 'vue'
+
+import { useMethods } from '../../composables/methods'
+
+const props = defineProps({
+  node: {
+    type: undefined,
+    default: null,
   },
-  data() {
-    const ids = this.element.getAttribute('ids').split(' ')
-    return {
-      id: ids[0],
-      routeDescription: {
-        path: '',
-        hash: `#${this.element.getAttribute('refid')}`,
-      },
-    }
+  componentName: {
+    type: String,
   },
-}
+  properties: {
+    type: Object,
+  }
+})
+
+const { node } = toRefs(props)
+const routeDescription = ref({hash: '#' + node.value.getAttribute('refid')})
+
+const { extractId } = useMethods()
+const { id } = extractId(node.value)
+
 </script>

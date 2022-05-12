@@ -2,6 +2,7 @@ import SphinxPage from './components/SphinxPage.vue'
 import * as SphinxStore from './store/modules/sphinx'
 
 import BlockQuote from './components/templates/BlockQuote.vue'
+import ColumnGroup from './components/templates/ColumnGroup.vue'
 import Comment from './components/templates/Comment.vue'
 import Compound from './components/templates/Compound.vue'
 import Container from './components/templates/Container.vue'
@@ -24,7 +25,10 @@ import Note from './components/templates/Note.vue'
 import NumberReference from './components/templates/NumberReference.vue'
 import Problematic from './components/templates/Problematic.vue'
 import Reference from './components/templates/Reference.vue'
+import Raw from './components/templates/Raw.vue'
 import Section from './components/templates/Section.vue'
+import StandardElement from './components/templates/StandardElement.vue'
+import Text from './components/templates/Text.vue'
 import Title from './components/templates/Title.vue'
 import TodoNode from './components/templates/TodoNode.vue'
 import Topic from './components/templates/Topic.vue'
@@ -32,6 +36,7 @@ import Transition from './components/templates/Transition.vue'
 
 if (
   BlockQuote ||
+  ColumnGroup ||
   Comment ||
   Compound ||
   Container ||
@@ -53,8 +58,11 @@ if (
   Note ||
   NumberReference ||
   Problematic ||
+  Raw ||
   Reference ||
   Section ||
+  StandardElement ||
+  Text ||
   Title ||
   TodoNode ||
   Topic ||

@@ -1,14 +1,6 @@
-import { mapGetters } from 'vuex'
-
 import { determineRouteUrl } from '../js/utilities'
 
 export const baseReference = {
-  computed: {
-    ...mapGetters({
-      getPageById: 'sphinx/getPageById',
-      getBaseUrl: 'sphinx/getBaseUrl',
-    }),
-  },
   props: {
     element: {
       type: undefined,
@@ -32,12 +24,15 @@ export const baseReference = {
       if (!this.isReferenceToCurrentPage()) {
         pageName = this.determinePageName()
         this.routeDescription.hash = this.determinePageLocation()
-        const existingPageWrapper = this.getPageById(baseRefUri, pageName)
+        const existingPageWrapper = this.$store.getPageById(
+          baseRefUri,
+          pageName,
+        )
         if (!existingPageWrapper) {
           this.$store.dispatch('sphinx/fetchPage', {
             page_name: pageName,
             page_route: baseRefUri,
-            page_url: this.getBaseUrl(baseRefUri),
+            page_url: this.$store.getBaseUrl(baseRefUri),
           })
         }
       }

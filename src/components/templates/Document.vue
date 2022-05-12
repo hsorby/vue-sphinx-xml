@@ -1,23 +1,33 @@
-<script>
-import { sphinxChildren } from '../../mixins/SphinxChildren'
+<template>
+  <div :id="id">
+    <component
+      v-for="(c, index) in children"
+      :key="'document_component_' + index"
+      :is="c.component"
+      :node="c.node"
+      :componentName="c.name"
+      :properties="c.properties"
+    />
+  </div>
+</template>
 
-export default {
-  name: 'Document',
-  props: {
-    element: { type: undefined, required: true },
-    id: { type: String },
+<script setup>
+import { defineProps, toRefs } from 'vue'
+
+import { useChildren } from '../../composables/computed'
+
+const props = defineProps({
+  element: {
+    type: undefined,
+    default: { empty: true },
   },
-  mixins: [sphinxChildren],
-  render: function(h) {
-    return h(
-      'div', // tag name
-      {
-        attrs: {
-          id: this.id,
-        },
-      }, // options
-      this.children.map(child => h(child)), // array of children
-    )
+  id: {
+    type: String,
+    default: '',
   },
-}
+})
+
+const { element } = toRefs(props)
+const { children } = useChildren(element)
+
 </script>

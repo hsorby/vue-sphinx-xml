@@ -1,23 +1,42 @@
-<script>
-import { sphinxChildren } from '../../mixins/SphinxChildren'
+<template>
+  <div :="attrs">
+    <p class="admonition-title">Note</p>
+    <component
+      v-for="(c, index) in children"
+      :key="'note_component_' + index"
+      :is="c.component"
+      :node="c.node"
+      :componentName="c.name"
+      :properties="c.properties"
+    />
+  </div>
+</template>
 
-export default {
-  name: 'Note',
-  mixins: [sphinxChildren],
-  render(h) {
-    return h(
-      'div', // tag name
-      this.dataObject(this.classes),
-      [
-        h('p', { class: 'admonition-title' }, 'Note'),
-        ...this.children.map(child => h(child)),
-      ], // array of children
-    )
+<script setup>
+console.log("****** IN USE ******")
+import { toRefs } from 'vue'
+
+import { useMethods } from '../../composables/methods'
+import { useChildren } from '../../composables/computed'
+
+const props = defineProps({
+  node: {
+    type: undefined,
+    default: null,
   },
-  computed: {
-    classes() {
-      return ['admonition', 'note']
-    },
+  componentName: {
+    type: String,
   },
-}
+  properties: {
+    type: Object,
+  }
+})
+
+const { node } = toRefs(props)
+const { dataObject } = useMethods()
+const attrs = ref({})
+
+const { children } = useChildren(node)
+
+attrs.value = dataObject(node.value, ['admonition', 'note']).attrs
 </script>

@@ -1,53 +1,45 @@
-<script>
-import { mapGetters } from 'vuex'
+<template>
+  <a :href="href" :download="downladName" :class="classes" >{{ downloadName }}</a>
+</template>
 
-import { sphinxChildren } from '../../mixins/SphinxChildren'
+<script setup>
+import { computed, toRefs } from 'vue'
+import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
+
 import { determineRouteUrl } from '../../js/utilities'
 
-export default {
-  name: 'DownloadReference',
-  mixins: [sphinxChildren],
-  render(h) {
-    return h(
-      'a', // tag name
-      {
-        attrs: this.defineAttrs,
-        class: this.classes,
-      },
-      this.children.map(child => h(child)),
-    )
+const props = defineProps({
+  node: {
+    type: undefined,
+    default: null,
   },
-  computed: {
-    classes() {
-      let classes = ['reference', 'internal']
-      this.element.getAttribute('reftype') === 'download'
-        ? classes.push('download')
-        : null
-      return classes
-    },
-    href() {
-      let downloadHref = this.element.getAttribute('filename')
-      if (
-        downloadHref &&
-        !downloadHref.startsWith('/') &&
-        !downloadHref.startsWith('http')
-      ) {
-        const routeURL = determineRouteUrl(this.$route)
-        downloadHref = `${this.getDownloadURL(routeURL)}/${downloadHref}`
-      }
-      return downloadHref
-    },
-    defineAttrs() {
-      const targetParts = this.element.getAttribute('reftarget').split('/')
-      const downloadName = targetParts[targetParts.length - 1]
-      return {
-        download: downloadName,
-        href: this.href,
-      }
-    },
-    ...mapGetters({
-      getDownloadURL: 'sphinx/getDownloadURL',
-    }),
+  componentName: {
+    type: String,
   },
-}
+})
+
+const { node } = toRefs(props)
+const route = useRoute()
+const store = useStore()
+
+const href = computed(() => {
+  let downloadHref = node.value.getAttribute('filename')
+  if (
+    downloadHref &&
+    !downloadHref.startsWith('/') &&
+    !downloadHref.startsWith('http')
+  ) {
+    const routeURL = determineRouteUrl(route)
+    downloadHref = [
+      store.getters['sphinx/getDownloadURL'](routeURL),
+      downloadHref,
+    ].join('/')
+  }
+  return downloadHref
+})
+
+const targetParts = node.value.getAttribute('reftarget').split('/')
+const downloadName = targetParts[targetParts.length - 1]
+const classes = ['reference', 'internal', node.value.getAttribute('reftype')]
 </script>

@@ -1,29 +1,51 @@
-<script>
-import { sphinxChildren } from '../../mixins/SphinxChildren'
+<template>
+  <figure :="attrs">
+    <component
+      v-for="(c, index) in children"
+      :key="'figure_component_' + index"
+      :is="c.component"
+      :node="c.node"
+      :componentName="c.name"
+      :properties="c.properties"
+    />
+  </figure>
+</template>
 
-export default {
-  name: 'Figure',
-  mixins: [sphinxChildren],
-  render(h) {
-    return h(
-      'figure', // tag name
-      this.dataObject(this.classes),
-      this.children.map(child => h(child)),
-    )
+<script setup>
+import { computed, toRefs, ref } from 'vue'
+
+import { useChildren, useClasses } from '../../composables/computed'
+import { useMethods } from '../../composables/methods'
+
+const props = defineProps({
+  node: {
+    type: undefined,
+    default: null,
   },
-  computed: {
-    classes() {
-      let classes = []
-      this.element.attributes.forEach(attr => {
-        const attrName = attr.name
-        if (attrName !== 'ids' && attrName !== 'names') {
-          if (attrName === 'align') {
-            classes.push('align-' + attr.value)
-          }
-        }
-      })
-      return classes
-    },
+  componentName: {
+    type: String,
   },
-}
+  properties: {
+    type: Object,
+  },
+})
+
+const { dataObject } = useMethods()
+const { node } = toRefs(props)
+const attrs = ref({})
+const { classes } = useClasses(node)
+
+const { children } = useChildren(node)
+
+const combinerdClasses = computed(() => {
+  let c = [...classes.value]
+  for (const attr of node.value.attributes) {
+    if (attr.name === 'align') {
+      c.push('align-' + attr.value)
+    }
+  }
+  return c
+})
+
+attrs.value = dataObject(node.value, combinerdClasses.value).attrs
 </script>

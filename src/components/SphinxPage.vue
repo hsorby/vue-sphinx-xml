@@ -1,116 +1,151 @@
 <template>
-  <document :element="element" :id="id" keepalive />
+  <document :element="element" :id="id" />
 </template>
 
-<script>
-import { mapActions } from 'vuex'
+<script setup>
+import { defineProps, ref, toRefs, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
-import { determineRouteUrl } from '../js/utilities'
+import { determineRouteUrl, constructPageNameFromRoute } from '../js/utilities'
 
-export default {
-  name: 'SphinxPage',
-  components: {
-    document: () => import('./templates/Document.vue'),
+import Document from './templates/Document.vue'
+
+const props = defineProps({
+  baseURL: {
+    type: String,
+    default: '/',
   },
-  props: {
-    baseURL: {
-      type: String,
-      default: '/',
-    },
-    downloadBaseURL: {
-      type: String,
-      default: '',
-    },
-    imagesBaseURL: {
-      type: String,
-      default: '',
-    },
-    indexFileName: {
-      type: String,
-      default: 'index',
-    },
-    scrollDelay: {
-      type: Number,
-      default: 300,
-    },
+  downloadBaseURL: {
+    type: String,
+    default: '',
   },
-  data() {
-    return {
-      element: document.createElement(null),
-      id: '',
-    }
+  imagesBaseURL: {
+    type: String,
+    default: '',
   },
-  watch: {
-    $route: {
-      handler: function(to, from) {
-        if (from === undefined || to.path !== from.path) {
-          this.page = {}
-          this.fetchPageData(to)
-          if (to.hash) {
-            setTimeout(() => {
-              const elem = document.querySelector(to.hash)
-              if (elem) {
-                window.scrollTo({
-                  top: elem.offsetTop,
-                  behavior: 'smooth',
-                })
-              }
-            }, this.scrollDelay)
-          }
-        } else if (to.path === from.path && to.hash) {
-          const elem = document.querySelector(to.hash)
-          if (elem) {
-            window.scrollTo({
-              top: elem.offsetTop,
-              behavior: 'smooth',
-            })
-          }
-        }
-      },
-      immediate: true,
-    },
+  indexFileName: {
+    type: String,
+    default: 'index',
   },
-  updated() {
-    this.$emit('updated')
+  pageNotFoundName: {
+    type: String,
+    default: '404',
   },
-  methods: {
-    ...mapActions('sphinx', ['fetchPage']),
-    fetchPageData(routeTo) {
-      let pageName = routeTo.params.pageName
-      if (!pageName) {
-        pageName = this.indexFileName
+  scrollDelay: {
+    type: Number,
+    default: 200,
+  },
+})
+
+const {
+  baseURL,
+  downloadBaseURL,
+  imagesBaseURL,
+  indexFileName,
+  pageNotFoundName,
+  scrollDelay,
+} = toRefs(props)
+
+const router = useRouter()
+const route = useRoute()
+const store = useStore()
+
+let element = ref(null)
+let scrollToTarget = ref(undefined)
+let id = ref('')
+let previousRoute = {
+  path: undefined,
+  hash: undefined,
+}
+
+function followScrollTarget(elem) {
+  setTimeout(() => {
+    scrollToTarget.value = elem.offsetTop
+    window.scrollTo({
+      top: elem.offsetTop,
+      behavior: 'smooth',
+    })
+    setTimeout(() => {
+      if (scrollToTarget.value !== elem.offsetTop) {
+        followScrollTarget(elem)
       }
-      const imagesBaseURL =
-        this.imagesBaseURL === ''
-          ? `${this.baseURL}/_images`
-          : this.imagesBaseURL
-      const downloadBaseURL =
-        this.downloadBaseURL === ''
-          ? `${this.baseURL}/_downloads`
-          : this.downloadBaseURL
-      const routeURL = determineRouteUrl(routeTo)
+    }, 10)
+  }, scrollDelay.value)
+}
 
-      this.fetchPage({
-        page_name: pageName,
-        page_route: routeURL,
-        page_url: this.baseURL,
-        page_downloads: downloadBaseURL,
-        page_images: imagesBaseURL,
-      }).then(element => {
-        if (element) {
-          this.element = element
-          this.id = pageName.replace('/', '_')
-        } else {
-          this.$router.push({
-            name: '404',
-            params: {
-              type: 'page',
-              message: `Could not find Sphinx page '${pageName}.xml'.`,
-            },
-          })
-        }
-      })
-    },
+watch(
+  route,
+  (to) => {
+    if (previousRoute.path === undefined || to.path !== previousRoute.path) {
+      fetchPageData(to)
+      if (to.hash) {
+        setTimeout(() => {
+          let hash = to.hash
+          if (hash.startsWith('#')) {
+            hash = hash.slice(1)
+          }
+          const elem = document.getElementById(hash)
+          if (elem) {
+            followScrollTarget(elem)
+          }
+        }, scrollDelay.value)
+      }
+    } else if (to.path === previousRoute.path && to.hash) {
+      let hash = to.hash
+      if (hash.startsWith('#')) {
+        hash = hash.slice(1)
+      }
+      const elem = document.getElementById(hash)
+      if (elem) {
+        window.scrollTo({
+          top: elem.offsetTop,
+          behavior: 'smooth',
+        })
+      }
+    }
+    previousRoute.path = to.path
+    previousRoute.hash = to.hash
   },
+  { flush: 'pre', immediate: true, deep: true },
+)
+
+function fetchPageData(routeTo) {
+  let pageName = constructPageNameFromRoute(routeTo)
+  if (!pageName) {
+    pageName = indexFileName.value
+  }
+  const resolvedImagesBaseURL =
+    imagesBaseURL.value === ''
+      ? `${baseURL.value}/_images`
+      : imagesBaseURL.value
+  const resolvedDownloadBaseURL =
+    downloadBaseURL.value === ''
+      ? `${baseURL.value}/_downloads`
+      : downloadBaseURL.value
+  const routeURL = determineRouteUrl(routeTo)
+
+  store
+    .dispatch('sphinx/fetchPage', {
+      page_name: pageName,
+      page_route: routeURL,
+      page_url: baseURL.value,
+      page_downloads: resolvedDownloadBaseURL,
+      page_images: resolvedImagesBaseURL,
+    })
+    .then((response) => {
+      if (response) {
+        element.value = response
+        id.value = 'page_' + pageName.replace('/', '_')
+      } else {
+        router.push({
+          name: pageNotFoundName.value,
+          params: {
+            type: 'page',
+            message: `Could not find Sphinx page '${pageName}.xml'.`,
+          },
+        })
+      }
+    })
 }
 </script>

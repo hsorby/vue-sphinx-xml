@@ -1,10 +1,12 @@
+import { h } from 'vue'
+
 export const renderDirectElementMap = (element, tagName) => {
   return {
     components: {
       DirectElementMap: () =>
         import('../components/templates/DirectElementMap.vue'),
     },
-    render(h) {
+    render() {
       return h('DirectElementMap', {
         props: {
           element,
@@ -20,14 +22,14 @@ export const renderSection = (element, level, extraIds) => {
     components: {
       Section: () => import('../components/templates/Section.vue'),
     },
-    render(h) {
-      return h('Section', {
-        props: {
+    render() {
+      return h('Section',
+        {
           level,
           element,
           extraIds,
         },
-      })
+      )
     },
   }
 }
@@ -37,7 +39,7 @@ export const renderTitle = (element, level, isTopic) => {
     components: {
       Title: () => import('../components/templates/Title.vue'),
     },
-    render(h) {
+    render() {
       return h(
         'Title',
         {
@@ -63,7 +65,7 @@ export const renderPlainText = text => {
 
 export const renderTransition = () => {
   return {
-    render(h) {
+    render() {
       return h(
         'hr', // tag name
         { class: ['docutils'] },
@@ -77,7 +79,7 @@ export const renderMath = element => {
     components: {
       Math: () => import('../components/templates/Math.vue'),
     },
-    render(h) {
+    render() {
       return h('Math', {
         props: {
           element,
@@ -92,7 +94,7 @@ export const renderLineSingle = element => {
     components: {
       LineSingle: () => import('../components/templates/LineSingle.vue'),
     },
-    render(h) {
+    render() {
       return h('LineSingle', {
         props: {
           element,
@@ -107,7 +109,7 @@ export const renderLineBlock = element => {
     components: {
       LineBlock: () => import('../components/templates/LineBlock.vue'),
     },
-    render(h) {
+    render() {
       return h('LineBlock', {
         props: {
           element,
@@ -122,7 +124,7 @@ export const renderLiteralBlock = element => {
     components: {
       LiteralBlock: () => import('../components/templates/LiteralBlock.vue'),
     },
-    render(h) {
+    render() {
       return h('LiteralBlock', {
         props: {
           element,
@@ -137,7 +139,7 @@ export const renderLiteral = element => {
     components: {
       Literal: () => import('../components/templates/Literal.vue'),
     },
-    render(h) {
+    render() {
       return h('Literal', {
         props: {
           element,
@@ -152,7 +154,7 @@ export const renderMathBlock = element => {
     components: {
       MathBlock: () => import('../components/templates/MathBlock.vue'),
     },
-    render(h) {
+    render() {
       return h('MathBlock', {
         props: {
           element,
@@ -167,7 +169,7 @@ export const renderProblematic = element => {
     components: {
       Problematic: () => import('../components/templates/Problematic.vue'),
     },
-    render(h) {
+    render() {
       return h('Problematic', {
         props: {
           element,
@@ -182,7 +184,7 @@ export const renderNote = element => {
     components: {
       Note: () => import('../components/templates/Note.vue'),
     },
-    render(h) {
+    render() {
       return h('Note', {
         props: {
           element,
@@ -197,7 +199,7 @@ export const renderTodoNode = element => {
     components: {
       TodoNode: () => import('../components/templates/TodoNode.vue'),
     },
-    render(h) {
+    render() {
       return h('TodoNode', {
         props: {
           element,
@@ -212,7 +214,7 @@ export const renderReference = element => {
     components: {
       Reference: () => import('../components/templates/Reference.vue'),
     },
-    render(h) {
+    render() {
       return h('Reference', {
         props: {
           element,
@@ -228,7 +230,7 @@ export const renderNumberReference = element => {
       NumberReference: () =>
         import('../components/templates/NumberReference.vue'),
     },
-    render(h) {
+    render() {
       return h('NumberReference', {
         props: {
           element,
@@ -244,7 +246,7 @@ export const renderFootnoteReference = element => {
       FootnoteReference: () =>
         import('../components/templates/FootnoteReference.vue'),
     },
-    render(h) {
+    render() {
       return h('FootnoteReference', {
         props: {
           element,
@@ -259,7 +261,7 @@ export const renderFootnote = element => {
     components: {
       Footnote: () => import('../components/templates/Footnote.vue'),
     },
-    render(h) {
+    render() {
       return h('Footnote', {
         props: {
           element,
@@ -275,7 +277,7 @@ export const renderDownloadReference = element => {
       DownloadReference: () =>
         import('../components/templates/DownloadReference.vue'),
     },
-    render(h) {
+    render() {
       return h('DownloadReference', {
         props: {
           element,
@@ -290,7 +292,7 @@ export const renderFigure = element => {
     components: {
       Figure: () => import('../components/templates/Figure.vue'),
     },
-    render(h) {
+    render() {
       return h('Figure', {
         props: {
           element,
@@ -305,7 +307,7 @@ export const renderFigureCaption = element => {
     components: {
       FigureCaption: () => import('../components/templates/FigureCaption.vue'),
     },
-    render(h) {
+    render() {
       return h('FigureCaption', {
         props: {
           element,
@@ -320,7 +322,7 @@ export const renderImage = element => {
     components: {
       SphinxImage: () => import('../components/templates/Image.vue'),
     },
-    render(h) {
+    render() {
       return h('SphinxImage', {
         props: {
           element,
@@ -335,7 +337,7 @@ export const renderLegend = element => {
     components: {
       Legend: () => import('../components/templates/Legend.vue'),
     },
-    render(h) {
+    render() {
       return h('Legend', {
         props: {
           element,
@@ -350,7 +352,7 @@ export const renderCompound = element => {
     components: {
       Compound: () => import('../components/templates/Compound.vue'),
     },
-    render(h) {
+    render() {
       return h('Compound', {
         props: {
           element,
@@ -365,7 +367,7 @@ export const renderContainer = element => {
     components: {
       Container: () => import('../components/templates/Container.vue'),
     },
-    render(h) {
+    render() {
       return h('Container', {
         props: {
           element,
@@ -381,7 +383,7 @@ export const renderTopic = element => {
     components: {
       Topic: () => import('../components/templates/Topic.vue'),
     },
-    render(h) {
+    render() {
       return h('Topic', {
         props: {
           element,
@@ -396,7 +398,7 @@ export const renderBlockQuote = element => {
     components: {
       BlockQuote: () => import('../components/templates/BlockQuote.vue'),
     },
-    render(h) {
+    render() {
       return h('BlockQuote', {
         props: {
           element: element,
@@ -411,7 +413,7 @@ export const renderComment = element => {
     components: {
       Comment: () => import('../components/templates/Comment.vue'),
     },
-    render(h) {
+    render() {
       return h('Comment', {
         props: {
           element: element,

@@ -1,21 +1,53 @@
-<script>
-import { sphinxChildren } from '../../mixins/SphinxChildren'
+<template>
+  <code>
+    <span class="pre">
+      <component
+        v-for="(c, index) in children"
+        :key="'code_component_' + index"
+        :is="c.component"
+        :node="c.node"
+        :componentName="c.name"
+        :properties="c.properties"
+      />
+    </span>
+  </code>
+</template>
 
-export default {
-  name: 'Literal',
-  mixins: [sphinxChildren],
-  render(h) {
-    return h(
-      'code', // tag name
-      this.dataObject(),
-      [
-        h(
-          'span',
-          { class: ['pre'] },
-          this.children.map(child => h(child)),
-        ),
-      ], // array of children
-    )
+<script setup>
+import { toRefs } from 'vue'
+
+import { useMethods } from '../../composables/methods'
+import { useChildren } from '../../composables/computed'
+
+const props = defineProps({
+  node: {
+    type: undefined,
+    default: null,
   },
+  componentName: {
+    type: String,
+  },
+  properties: {
+    type: Object,
+  },
+})
+
+const { node } = toRefs(props)
+
+const { dataObject } = useMethods()
+
+const { children } = useChildren(node)
+
+const v = dataObject(node.value)
+const isEmpty = (d) => {
+  for (const i in d) {
+    return false
+  }
+
+  return true
+}
+
+if (!isEmpty(v)) {
+  console.log('Something needs to be done with this:', v)
 }
 </script>

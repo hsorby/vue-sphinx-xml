@@ -1,21 +1,37 @@
-<script>
-import { sphinxChildren } from '../../mixins/SphinxChildren'
+<template>
+  <blockquote>
+    <div>
+      <component
+        v-for="(c, index) in children"
+        :key="'section_component_' + index"
+        :is="c.component"
+        :node="c.node"
+        :componentName="c.name"
+        :properties="c.properties"
+      />
+    </div>
+  </blockquote>
+</template>
 
-export default {
-  name: 'BlockQuote',
-  mixins: [sphinxChildren],
-  render: function(h) {
-    return h(
-      'blockquote', // tag name
-      {}, // options
-      [
-        h(
-          'div',
-          {},
-          this.children.map(child => h(child)),
-        ),
-      ], // array of children
-    )
+<script setup>
+import { toRefs } from 'vue'
+
+import { useChildren } from '../../composables/computed'
+
+const props = defineProps({
+  node: {
+    type: undefined,
+    default: null,
   },
-}
+  componentName: {
+    type: String,
+  },
+  properties: {
+    type: Object,
+  }
+})
+
+const { node } = toRefs(props)
+
+const { children } = useChildren(node)
 </script>

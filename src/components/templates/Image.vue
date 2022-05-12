@@ -1,48 +1,57 @@
-<script>
-import { mapGetters } from 'vuex'
+<template>
+  <img :="attrs" />
+</template>
 
-import { sphinxChildren } from '../../mixins/SphinxChildren'
+<script setup>
+import { computed, toRefs, ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
+
+import { useMethods } from '../../composables/methods'
+import { useChildren } from '../../composables/computed'
 import { determineRouteUrl } from '../../js/utilities'
 
-export default {
-  name: 'SphinxImage',
-  mixins: [sphinxChildren],
-  render(h) {
-    return h(
-      'img', // tag name
-      this.augmentedDataObject,
-      this.children.map(child => h(child)), // array of children
-    )
+const props = defineProps({
+  node: {
+    type: undefined,
+    default: null,
   },
-  computed: {
-    augmentedDataObject() {
-      let dataObject = this.dataObject()
-      dataObject.attrs.src = this.uri()
-      return dataObject
-    },
-    ...mapGetters({
-      getImagesURL: 'sphinx/getImagesURL',
-    }),
+  componentName: {
+    type: String,
   },
-  methods: {
-    uri() {
-      let imageURI = this.element.getAttribute('uri')
-      if (
-        imageURI &&
-        !imageURI.startsWith('/') &&
-        !imageURI.startsWith('http')
-      ) {
-        const routeURL = determineRouteUrl(this.$route)
-        // Sphinx puts all images in a directory '_images' by default
-        // for HTML output.  We are saying here that we will map the
-        // XML image reference the same way.
-        const lastIndex = imageURI.lastIndexOf('/')
-        const imageName = imageURI.slice(lastIndex)
-        imageURI = `${this.getImagesURL(routeURL)}${imageName}`
-      }
+  properties: {
+    type: Object,
+  },
+})
 
-      return imageURI
-    },
-  },
+const { node } = toRefs(props)
+const { children } = useChildren(node)
+const { dataObject } = useMethods()
+const route = useRoute()
+const store = useStore()
+const attrs = ref({})
+
+const uri = computed(() => {
+  let imageURI = node.value.getAttribute('uri')
+  if (imageURI && !imageURI.startsWith('/') && !imageURI.startsWith('http')) {
+    const routeURL = determineRouteUrl(route)
+    // Sphinx puts all images in a directory '_images' by default
+    // for HTML output.  We are saying here that we will map the
+    // XML image reference the same way.
+    const lastIndex = imageURI.lastIndexOf('/')
+    const imageName = imageURI.slice(lastIndex)
+    // imageURI = `${this.$store.sphinx.getImagesURL(routeURL)}${imageName}`
+    imageURI = [store.getters['sphinx/getImagesURL'](routeURL), imageName].join(
+      '/',
+    )
+  }
+  return imageURI
+})
+
+attrs.value = dataObject(node.value).attrs
+if (attrs.value) {
+  attrs.value.src = uri
+} else {
+  attrs.value = {src: uri}
 }
 </script>

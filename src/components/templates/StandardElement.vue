@@ -1,19 +1,20 @@
 <template>
-  <div :="attrs">
+  <component :is="tag" :="attrs">
     <component
       v-for="(c, index) in children"
-      :key="'section_component_' + index"
+      :key="'standard_element_component_' + index"
       :is="c.component"
       :node="c.node"
       :componentName="c.name"
       :properties="c.properties"
     />
-  </div>
+  </component>
 </template>
 
 <script setup>
-import { toRefs, ref } from 'vue'
+import { defineProps, toRefs, ref } from 'vue'
 
+import { nodeNameTagNameMap } from '../../js/nodemap'
 import { useChildren } from '../../composables/computed'
 import { useMethods } from '../../composables/methods'
 
@@ -25,15 +26,17 @@ const props = defineProps({
   componentName: {
     type: String,
   },
-  properties: {
-    type: Object,
-  },
 })
 
-const { dataObject } = useMethods()
 const { node } = toRefs(props)
+const { children } = useChildren(node)
+const { dataObject } = useMethods()
 const attrs = ref({})
 
-const { children } = useChildren(node)
-attrs.value = dataObject(node.value, ['line_block']).attrs
+const transferAttributes= new Set(['div', 'button'])
+const tag = nodeNameTagNameMap.get(node.value.nodeName)
+
+if (transferAttributes.has(node.value.nodeName)) {
+  attrs.value = dataObject(node.value).attrs
+}
 </script>

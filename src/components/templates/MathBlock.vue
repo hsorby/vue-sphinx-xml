@@ -6,7 +6,8 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { computed, toRefs } from 'vue'
 // Unsupported delimiters/formatting.
 const removeList = ['\\begin{equation}', '\\end{equation}']
 
@@ -17,59 +18,64 @@ const renameMap = new Map([
   ['\\end{eqnarray}', '\\end{aligned}'],
 ])
 
-export default {
-  name: 'MathBlock',
-  props: {
-    element: {
-      type: undefined,
-    },
+const props = defineProps({
+  node: {
+    type: undefined,
+    default: null,
   },
+  componentName: {
+    type: String,
+  },
+  properties: {
+    type: Object,
+  },
+})
 
-  computed: {
-    formulas() {
-      let formulas = []
-      const multiEquations = this.element.innerHTML.split(/\r?\n\r?\n/)
-      for (const equation of multiEquations) {
-        if (equation) {
-          let stripped = equation.replaceAll('&amp;', '&')
-          for (const item of removeList) {
-            stripped = stripped.replaceAll(item, '')
-          }
-          for (let [key, value] of renameMap) {
-            stripped = stripped.replaceAll(key, value)
-          }
-          if (
-            this.requiresSplitEnvironment(stripped) &&
-            !this.hasEnvironment(stripped)
-          ) {
-            // Create an environment that looks like a split environment
-            stripped = `\\begin{array}{cc}${stripped}\\end{array}`
-          }
-          formulas.push(stripped)
-        }
+const { node } = toRefs(props)
+
+const formulas = computed(() => {
+  let formulas = []
+  const multiEquations = node.value.innerHTML.split(/\r?\n\r?\n/)
+  for (const equation of multiEquations) {
+    if (equation) {
+      let stripped = equation.replaceAll('&amp;', '&')
+      for (const item of removeList) {
+        stripped = stripped.replaceAll(item, '')
       }
-      return formulas
-    },
-  },
-  methods: {
-    requiresSplitEnvironment(formula) {
-      const ampersandIndex = formula.search('&')
-      const newLineIndex = formula.search('\\\\')
-      if (ampersandIndex !== -1 && newLineIndex !== -1) {
-        return true
+      for (let [key, value] of renameMap) {
+        stripped = stripped.replaceAll(key, value)
       }
-      return false
-    },
-    hasEnvironment(formula) {
-      // For some reason search doesn't return 0 if looking for \ at the start of a string.
-      // So we don't look for it.
-      const beginEnvironmentIndex = formula.search('begin{aligned}')
-      const endEnvironmentIndex = formula.search('end{aligned}')
-      if (beginEnvironmentIndex !== -1 && endEnvironmentIndex !== -1) {
-        return true
+      if (
+        requiresSplitEnvironment(stripped) &&
+        !hasEnvironment(stripped)
+      ) {
+        // Create an environment that looks like a split environment
+        stripped = `\\begin{array}{cc}${stripped}\\end{array}`
       }
-      return false
-    },
-  },
+      formulas.push(stripped)
+    }
+  }
+  return formulas
+})
+
+function requiresSplitEnvironment(formula) {
+  const ampersandIndex = formula.search('&')
+  const newLineIndex = formula.search('\\\\')
+  if (ampersandIndex !== -1 && newLineIndex !== -1) {
+    return true
+  }
+  return false
 }
+
+function hasEnvironment(formula) {
+  // For some reason search doesn't return 0 if looking for \ at the start of a string.
+  // So we don't look for it.
+  const beginEnvironmentIndex = formula.search('begin{aligned}')
+  const endEnvironmentIndex = formula.search('end{aligned}')
+  if (beginEnvironmentIndex !== -1 && endEnvironmentIndex !== -1) {
+    return true
+  }
+  return false
+}
+
 </script>

@@ -1,7 +1,9 @@
 <script>
+import { h } from 'vue'
+
 export default {
   name: 'Transition',
-  render(h) {
+  render() {
     return h(
       'hr', // tag name
       { class: ['docutils'] },

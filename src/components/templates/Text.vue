@@ -1,9 +1,8 @@
 <template>
-  <katex-element :expression="node.textContent"></katex-element>
+  {{ properties.text }}
 </template>
 
 <script setup>
-
 const props = defineProps({
   node: {
     type: undefined,
@@ -14,6 +13,7 @@ const props = defineProps({
   },
   properties: {
     type: Object,
-  }
+    required: true,
+  },
 })
 </script>

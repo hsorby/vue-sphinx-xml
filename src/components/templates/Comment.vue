@@ -1,17 +1,28 @@
-<script>
-import { sphinxChildren } from '../../mixins/SphinxChildren'
+<template>
+  <comment :content="text" />
+</template>
 
-export default {
-  name: 'Comment',
-  mixins: [sphinxChildren],
-  render(h) {
-    let comment = h('', {})
-    let text = ''
-    this.element.childNodes.forEach(node => {
-      text += node.nodeValue
-    })
-    comment.text = text
-    return comment
+<script setup>
+import { toRefs, ref } from 'vue'
+import Comment from '../Comment.vue'
+
+const props = defineProps({
+  node: {
+    type: undefined,
+    default: null,
   },
+  componentName: {
+    type: String,
+  },
+  properties: {
+    type: Object,
+  },
+})
+
+const { node } = toRefs(props)
+const text = ref('')
+
+for (const n of node.value.childNodes) {
+  text.value += n.nodeValue
 }
 </script>

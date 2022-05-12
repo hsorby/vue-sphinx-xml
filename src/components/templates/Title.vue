@@ -1,43 +1,57 @@
-<script>
-import { sphinxChildren } from '../../mixins/SphinxChildren'
+<template>
+  <component :is="tagName" :class="classes">
+     <component
+      v-for="(c, index) in children"
+      :key="'title_component_' + index"
+      :is="c.component"
+      :node="c.node"
+      :componentName="c.name"
+      :properties="c.properties"
+    />
+ </component>
+</template>
+<script setup>
+import { computed, toRefs } from 'vue'
 
-export default {
-  name: 'Title',
-  mixins: [sphinxChildren],
-  render(h) {
-    return h(
-      this.tagName, // tag name
-      { class: this.classes },
-      this.children.map(child => h(child)), // array of children
-    )
+import { useChildren } from '../../composables/computed'
+
+const props = defineProps({
+  node: {
+    type: undefined,
+    default: null,
   },
-  props: {
-    level: {
-      type: Number,
-      required: true,
-    },
-    isTopic: {
-      type: Boolean,
-    },
+  componentName: {
+    type: String,
   },
-  computed: {
-    tagName() {
-      let tagName = 'h' + this.level
-      if (this.isTopic) {
-        tagName = 'p'
-      }
-      return tagName
-    },
-    classes() {
-      let classes = []
-      if (this.isTopic) {
-        classes.push('topic-title')
-        if (this.level === 1) {
-          classes.push('first')
-        }
-      }
-      return classes
-    },
+  properties: {
+    type: Object,
+    required: true,
   },
-}
+})
+
+const { node, properties } = toRefs(props)
+
+const { children } = useChildren(node)
+
+const depth = properties.value.depth
+const isTopic = properties.value.isTopic
+
+const tagName = computed(() => {
+  let tagName = 'h' + depth
+  if (isTopic) {
+    tagName = 'p'
+  }
+  return tagName
+})
+
+const classes = computed(() => {
+  let classes = []
+  if (isTopic) {
+    classes.push('topic-title')
+    if (depth === 1) {
+      classes.push('first')
+    }
+  }
+  return classes
+})
 </script>

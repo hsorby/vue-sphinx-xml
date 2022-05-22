@@ -45,10 +45,7 @@ const formulas = computed(() => {
       for (let [key, value] of renameMap) {
         stripped = stripped.replaceAll(key, value)
       }
-      if (
-        requiresSplitEnvironment(stripped) &&
-        !hasEnvironment(stripped)
-      ) {
+      if (requiresSplitEnvironment(stripped) && !hasEnvironment(stripped)) {
         // Create an environment that looks like a split environment
         stripped = `\\begin{array}{cc}${stripped}\\end{array}`
       }
@@ -77,5 +74,4 @@ function hasEnvironment(formula) {
   }
   return false
 }
-
 </script>

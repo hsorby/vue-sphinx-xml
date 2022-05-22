@@ -1,9 +1,9 @@
 <template>
-  <a :href="href" :download="downladName" :class="classes" >{{ downloadName }}</a>
+  <a :href="href" :download="saveFilename" :class="classes" >{{ saveFilename }}</a>
 </template>
 
 <script setup>
-import { computed, toRefs } from 'vue'
+import { computed, toRefs, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
@@ -42,4 +42,8 @@ const href = computed(() => {
 const targetParts = node.value.getAttribute('reftarget').split('/')
 const downloadName = targetParts[targetParts.length - 1]
 const classes = ['reference', 'internal', node.value.getAttribute('reftype')]
+
+// Need to use a refernce variable in the template bound attributes.
+const saveFilename = ref('not-set')
+saveFilename.value = downloadName
 </script>
